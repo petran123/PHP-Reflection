@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(41, 41, 41);
+}
+
+* {
+    text-decoration: none;
+}
+
+.mobile-menu-drawer {
+    margin: 0% 5%;
+}
+nav {
+    background-color: rgb(69, 94, 92);
+    padding: 1px;
+    ul {
+        list-style: none;
+    }
+    li {
+        margin-left: auto;
+    }
+    a {
+        color: rgb(32, 15, 15);
+    }
+}
+

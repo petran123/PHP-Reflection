@@ -1,0 +1,29 @@
+body {
+  background-color: #292929;
+}
+
+* {
+  text-decoration: none;
+}
+
+.mobile-menu-drawer {
+  margin: 0% 5%;
+}
+
+nav {
+  background-color: #455e5c;
+  padding: 1px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  margin-left: auto;
+}
+
+nav a {
+  color: #200f0f;
+}
+/*# sourceMappingURL=style.css.map */
