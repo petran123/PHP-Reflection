@@ -9,9 +9,7 @@ h1 {
     text-align: center;
 }
 nav {
-    background-color: rgb(41, 41, 41);
     padding: 1px;
-    width: 100%;
     display:flex;
     justify-content: space-evenly;
     ul {
@@ -24,17 +22,37 @@ nav {
         margin-left: auto;
         display: inline-block;
         padding: 0 2px;
-        font-size: .8rem;
+        font-size: .79rem;
+        &:hover {
+            background-color: #444;
+        }
     }
     a {
         color: #f0f0f0;
-        &:visited{
+        padding: 1rem 2px;
+        // &:hover { try this instead of li. see what works best
+        //     background-color: #444;
+        // }
+        &:visited{ 
         color: #aaa;
         }
         &.selected {
             text-shadow: 2px 2px 1px black ;
             color: thistle;
         }
+    }
+}
+
+nav,
+footer {
+    background-color: #292929;
+}
+footer {
+    color: white;
+    padding: 8px 0px;
+    p {
+        margin-left: 3%;
+        margin-right: 3%;
     }
 }
 

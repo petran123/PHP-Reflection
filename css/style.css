@@ -9,9 +9,7 @@ h1 {
 }
 
 nav {
-  background-color: #292929;
   padding: 1px;
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,11 +29,16 @@ nav li {
   margin-left: auto;
   display: inline-block;
   padding: 0 2px;
-  font-size: .8rem;
+  font-size: .79rem;
+}
+
+nav li:hover {
+  background-color: #444;
 }
 
 nav a {
   color: #f0f0f0;
+  padding: 1rem 2px;
 }
 
 nav a:visited {
@@ -45,6 +48,21 @@ nav a:visited {
 nav a.selected {
   text-shadow: 2px 2px 1px black;
   color: thistle;
+}
+
+nav,
+footer {
+  background-color: #292929;
+}
+
+footer {
+  color: white;
+  padding: 8px 0px;
+}
+
+footer p {
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 header {
