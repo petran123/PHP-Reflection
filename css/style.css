@@ -3,52 +3,64 @@
   font-family: sans-serif;
 }
 
+h1 {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+nav {
+  background-color: #292929;
+  padding: 1px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+nav ul {
+  list-style: none;
+  max-width: 550px;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-left: auto;
+  display: inline-block;
+  padding: 0 2px;
+  font-size: .8rem;
+}
+
+nav a {
+  color: #f0f0f0;
+}
+
+nav a:visited {
+  color: #aaa;
+}
+
+nav a.selected {
+  text-shadow: 2px 2px 1px black;
+  color: thistle;
+}
+
 header {
   position: relative;
 }
 
 header .mobile-menu-drawer {
-  position: fixed;
   width: 100vw;
-  top: 0;
-}
-
-header nav {
-  background-color: #292929;
-  padding: 1px;
-  width: 100%;
-}
-
-header nav ul {
-  list-style: none;
-  max-width: 550px;
-  margin-left: auto;
-}
-
-header nav li {
-  margin-left: auto;
-  display: inline-block;
-  padding: 0 20px;
-}
-
-header nav a {
-  color: #f0f0f0;
-}
-
-header nav a:visited {
-  color: #aaa;
 }
 
 body {
   background-color: #f0f0f0;
 }
 
-main {
-  margin-top: 100px;
-}
-
 .container {
-  max-width: 1200px;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -58,12 +70,44 @@ main {
   display: -ms-flexbox;
   display: flex;
   padding-top: 20px;
-  -ms-flex-flow: wrap;
-      flex-flow: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.container .flexbox .personal-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+}
+
+.container .flexbox .personal-info img {
+  border-radius: 50%;
+}
+
+.container .flexbox .personal-info h1 {
+  margin-top: 0.5rem;
+  margin-bottom: -0.5rem;
 }
 
 .container .flexbox .flex-p {
-  width: 30%;
-  margin: 0 1.5%;
+  width: 100%;
+  margin: 0 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
 }
 /*# sourceMappingURL=style.css.map */
