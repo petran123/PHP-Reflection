@@ -1,0 +1,70 @@
+// Element settings -------------------------- /
+* {
+    text-decoration: none;
+    font-family: sans-serif;
+    color: rgb(39, 39, 39);
+}
+
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+nav {
+    padding: 1px;
+    display:flex;
+    justify-content: space-evenly;
+    ul {
+        list-style: none;
+        max-width: 550px;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        margin-left: auto;
+        display: inline-block;
+        padding: 0 2px;
+        font-size: .79rem;
+        &:hover {
+            background-color: #444;
+        }
+    }
+    a {
+        color: #f0f0f0;
+        padding: 1rem 2px;
+        // &:hover { try this instead of li. see what works best
+        //     background-color: #444;
+        // }
+        &:visited{ 
+        color: #aaa;
+        }
+        &.selected {
+            text-shadow: 2px 2px 1px black ;
+            color: rgb(12, 218, 132);
+        }
+    }
+}
+
+nav,
+footer {
+    background-color: #292929;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+footer {
+    color: white;
+    padding: 8px 0px;
+    p {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+}
+
+footer {
+    p {
+        color: rgb(12, 218, 132);
+    }
+}
+
