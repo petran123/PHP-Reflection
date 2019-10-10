@@ -1,0 +1,42 @@
+{% block head %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Petros Papadopoulos</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+    <header>
+        <div class="mobile-menu-drawer">
+            <nav>
+                <ul>
+                    <li><h2><a href="./" class=" {{ l1 }}">Home</a></h2></li>
+                    <li><h2><a href="projects.php" class=" {{ l2 }}">Projects</a></h2></li>
+                    <li><h2><a href="about.php" class=" {{ l3 }}">About</a></h2></li>
+                    <li><h2><a href="contact.php" class=" {{ l4 }}">Contact</a></h2></li>
+                    {% block admin %} {% endblock %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+    {% endblock %}
+{% block content %}
+
+{% endblock %}
+
+{% block footer %}
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+        <p>&copy; 2019 Petros Papadopoulos</p>
+        </div>
+    </footer>
+</body>
+</html>
+{% endblock %}

@@ -1,30 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Petros Papadopoulos</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-</head>
-<body>
-    <header>
-        <div class="mobile-menu-drawer">
-            <nav>
-                <ul>
-                    <li><h2><a href="index.html?r=1" class="selected">Home</a></h2></li>
-                    <li><h2><a href="index.html?r=2">Projects</a></h2></li>
-                    <li><h2><a href="index.html?r=3">About</a></h2></li>
-                    <li><h2><a href="index.html?r=4">Contact</a></h2></li>
-                </ul>
-            </nav>
+{% extends "base.html" %}
 
+{% block content %}
 
-
-        </div>
-    </header>
-    <main>
-        <div class="container">
             <div class="flexbox">
                 <div class="personal-info">
                     <div class="profile-container">
@@ -35,11 +12,11 @@
                 </div>
                 <div class="flex-p">
                     <h1>Generated</h1>
-                    <h3>functionality should i add?</h3>
+                    <h3>What other functionality should i add?</h3>
                         <ul>
                             <li>templating->list of github projects</li>
                             <li>Contact page</li>
-                            <li><a href="#">Suggest Something</a></li>
+                            <li><a href="contact.php">Suggest Something</a></li>
                         </ul>
                     <div class="image-container">
                         <img src="http://placeimg.com/640/480/animals" alt="placeholder image">
@@ -74,18 +51,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-        <p>&copy; 2019 Petros Papadopoulos</p>
-        </div>
 
-    </footer>
-
-
-</body>
-
-
-</html>
+    {% endblock %}

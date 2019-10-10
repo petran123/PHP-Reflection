@@ -138,4 +138,12 @@ footer p {
   width: 90%;
   margin: auto;
 }
+
+.useless {
+  background: -webkit-gradient(linear, left top, right top, color-stop(45%, orange), color-stop(60%, blue));
+  background: linear-gradient(to right, orange 45%, blue 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
 /*# sourceMappingURL=style.css.map */
