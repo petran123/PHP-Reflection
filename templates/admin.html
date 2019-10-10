@@ -7,15 +7,36 @@
 
 {% block content %}
 <h1 class="useless">Super Secret Dashboard</h1>
+
+{% if authenticated == 2 %}
 <p>Technically the skeleton has been built. Now here's what is left, in no particular order:</p>
 <ol> 
     <li>github api</li>
-    <li>database and...</li>
+    <li>DONE! database and...</li>
     <li>account system with...</li>
-    <li>admin privileges for myself</li>
+    <li>admin privilege checks for this page (and additional functionality in other pages)</li>
+    <li>rewatch jwt, test-driven-development, and authentication and authorisation lessons</li>
+    <li>add a mail system, a contact form with a captcha</li>
+    <li>move pretty much everything into a database to demonstrate my knowledge with it</li>
 </ol>
 <p>Admin.php should pop a login field at first and show the actual contents only if isAuth(2) returns true</p>
 <p>There should be no registration because I'm the only admin and there are no real users</p>
 <p>I could use a database to add local content to a page but i don't see the reason if i'm honest</p>
 <p>I think the github list of projects will do the trick. what else should i show here?</p>
+{% else %}
+<form action='/admin.php' method='post'>
+{# i know get is the worst idea but i want to see the results on the screen for now #}
+    <h1>Please log in</h1>
+    <div>
+        <label for='username'>username</label>
+        <input type='text' id='username' name='username'>
+    </div>
+    <div>
+        <label for='password'>password</label>
+        <input type='password' id='password' name='password'>
+    </div>
+    <input type='submit' value='Log In!'>
+</form>
+{% endif %}
+
 {% endblock %}
