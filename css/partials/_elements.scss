@@ -2,6 +2,11 @@
 * {
     text-decoration: none;
     font-family: sans-serif;
+}
+
+
+h1,
+p {
     color: rgb(39, 39, 39);
 }
 
@@ -54,6 +59,7 @@ body {
 }
 
 footer {
+    margin-top: 5px;
     color: white;
     padding: 8px 0px;
     p {

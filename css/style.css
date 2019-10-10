@@ -1,6 +1,10 @@
 * {
   text-decoration: none;
   font-family: sans-serif;
+}
+
+h1,
+p {
   color: #272727;
 }
 
@@ -61,6 +65,7 @@ body {
 }
 
 footer {
+  margin-top: 5px;
   color: white;
   padding: 8px 0px;
 }
@@ -72,10 +77,6 @@ footer p {
 
 footer p {
   color: #0cda84;
-}
-
-header .mobile-menu-drawer {
-  width: 100vw;
 }
 
 .container {
