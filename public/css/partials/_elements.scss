@@ -1,8 +1,4 @@
 // Element settings -------------------------- /
-* {
-    text-decoration: none;
-    font-family: sans-serif;
-}
 
 
 h1,
@@ -14,6 +10,7 @@ h1 {
     font-size: 1.8rem;
     text-align: center;
 }
+
 nav {
     padding: 1px;
     display:flex;
@@ -33,20 +30,6 @@ nav {
             background-color: #444;
         }
     }
-    a {
-        color: #f0f0f0;
-        padding: 1rem 2px;
-        // &:hover { try this instead of li. see what works best
-        //     background-color: #444;
-        // }
-        &:visited{ 
-        color: #aaa;
-        }
-        &.selected {
-            text-shadow: 2px 2px 1px black ;
-            color: rgb(12, 218, 132);
-        }
-    }
 }
 
 nav,
@@ -61,11 +44,7 @@ body {
 footer {
     margin-top: 5px;
     color: white;
-    padding: 8px 0px;
-    p {
-        margin-left: 3%;
-        margin-right: 3%;
-    }
+    // padding: 8px 0px;
 }
 
 footer {
@@ -74,3 +53,29 @@ footer {
     }
 }
 
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    a {
+        margin: auto 0;
+        font-size: .79em;
+    }
+}
+
+header,
+footer {
+    a {
+        color: #f0f0f0;
+        padding: 1rem 0px;
+        // &:hover { try this instead of li. see what works best
+        //     background-color: #444;
+        // }
+        // { 
+        // color: #aaa;
+        // }
+        &.selected {
+            text-shadow: 2px 2px 1px black ;
+            color: rgb(12, 218, 132);
+        }
+    }
+}

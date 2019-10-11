@@ -6,6 +6,7 @@
     <title>Petros Papadopoulos</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
@@ -17,7 +18,6 @@
                     <li><h2><a href="projects.php" class=" {{ l2 }}">Projects</a></h2></li>
                     <li><h2><a href="about.php" class=" {{ l3 }}">About</a></h2></li>
                     <li><h2><a href="contact.php" class=" {{ l4 }}">Contact</a></h2></li>
-                    {% block admin %} {% endblock %}
                 </ul>
             </nav>
         </div>
@@ -33,8 +33,12 @@
         </div>
     </main>
     <footer>
-        <div class="container">
+        <div class="container footer-container">
         <p>&copy; 2019 Petros Papadopoulos</p>
+        <a href="admin.php" class="admin {{ l5 }}">Admin</a>
+        {% if authenticated == 2 %}
+            <a href="admin.php?logout" class="admin {{ l5 }}">Log out</a>
+        {% endif %}
         </div>
     </footer>
 </body>

@@ -1,5 +1,15 @@
-// Header ------------------------------------ /
+// Head ------------------------------------ /
+* {
+    text-decoration: none;
+    font-family: sans-serif;
+}
 
+H1,
+H2,
+H3,
+H4 {
+    font-family: 'Roboto', sans-serif;
+}
 
 // Body -------------------------------- /
 
@@ -42,4 +52,3 @@
         margin: auto;
     }
 }
-
