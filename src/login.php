@@ -1,16 +1,17 @@
 <?php
 
-session_start();
 
 // to create an account:
-// SQL::createAccount("petran", "1234", "2");
+// AccOps::createAccount("petran", "1234", "2");
 // 2 is the admin rank
-if (request()->cookies->has('acccess_token')) {
-    die("you have a cookie");
-}
+// if (request()->cookies->has('acccess_token')) {
+//     die("this doesn't work in localhost");
+// }
+
+// session_start();
 if (!empty($_POST)) {
-    login();
+    AccOps::login('/admin.php');
 }
 if (!empty($_GET)) {
-    getFunction();
+    AccOps::Logout('/admin.php');
 }

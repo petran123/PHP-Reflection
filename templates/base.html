@@ -35,9 +35,11 @@
     <footer>
         <div class="container footer-container">
         <p>&copy; 2019 Petros Papadopoulos</p>
+        {% if rank > 0 %}
+            <a href="admin.php" class="admin {{ l5 }}"> {{ username }}</a>
+            <a href="admin.php?logout" class="admin {{ l5 }}"> Log out</a>
+        {% else %}
         <a href="admin.php" class="admin {{ l5 }}">Admin</a>
-        {% if authenticated == 2 %}
-            <a href="admin.php?logout" class="admin {{ l5 }}">Log out</a>
         {% endif %}
         </div>
     </footer>

@@ -2,24 +2,21 @@
 
 {% block content %}
 
-{% if authenticated == 2 %}
-<h1 class="useless">Super Secret Dashboard</h1>
+{% if rank == 2 %}
+<h1 class="useless">Super Secret Admin Dashboard</h1>
 <p>Technically the skeleton has been built. Now here's what is left, in no particular order:</p>
 <ol> 
-    <li>github api</li>
-    <li><i>database and...</i></li>
-    <li><i>account system with...</i></li>
-    <li><i>admin privilege checks for this page</i> (and additional functionality in other pages)</li>
-    <li>rewatch jwt, test-driven-development, and authentication and authorisation lessons</li>
+    <li>github api <a href="https://developer.github.com/v3/">https://developer.github.com/v3/</a></li>
+    <li>additional admin functionality in other pages</li>
     <li>add a mail system, a contact form with a captcha</li>
     <li>move pretty much everything into a database to demonstrate my knowledge with it</li>
 </ol>
-<p><i>Admin.php should pop a login field at first and show the actual contents only if isAuth(2) returns true</i></p>
-<p>There should be no registration because I'm the only admin and there are no real users</p>
-<p>I could use a database to add local content to a page but i don't see the reason if i'm honest</p>
+<p>I have added a working admin registration form for demonstration</p>
 <p>I think the github list of projects will do the trick. what else should i show here?</p>
 {% else %}
-
+{% if rank == "wrong" %}
+<h1> Wrong Credentials </h1>
+{% endif %}
 <form action='/admin.php' method='post'>
     <h1>Please log in</h1>
     <div>
@@ -32,7 +29,7 @@
     </div>
     <input type='submit' value='Log In!'>
 </form>
-
+<a href='/register.php'>Register</a>
 {% endif %}
 
 {% endblock %}
