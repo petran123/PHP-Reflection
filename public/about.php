@@ -1,5 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../bootstrap.php';
+require_once __DIR__ . '/../src/bootstrap.php';
 
 echo $twig->render('about.html', ['l3' => 'selected']);
