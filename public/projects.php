@@ -1,11 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../src/bootstrap.php';
+require __DIR__ . '/../src/curl.php';
 
-if (isset($acc)) {
-    // var_dump($acc->getUsername());
-    echo $twig->render('projects.html', ['l2' => 'selected', 'username' => $acc->getUsername(), 'rank' => $acc->getRank()]);
-} else {
-    $acc = new AccOps();
-    echo $twig->render('projects.html', ['l2' => 'selected', 'username' => $acc->getUsername(), 'rank' => $acc->getRank()]);
-}
+
+$args['l2'] = 'selected';
+echo $twig->render('projects.html', $args);

@@ -23,7 +23,10 @@ if (request()->cookies->has('access_token')) {
 		die("cookie error");
 	}
 }
-
+if (!isset($acc)) {
+    $acc = new AccOps();   
+}
+$args = ['username' => $acc->getUsername(), 'rank' => $acc->getRank()];
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates/');

@@ -30,19 +30,23 @@ class AccOps
                 echo "password too short";
                 return false;
             }
+            
             $hashedPW = password_hash($password, PASSWORD_DEFAULT);
             $q1 = "SELECT username FROM accounts WHERE username = :name";
             $check = $db->prepare($q1);
             $check->bindParam(":name", $name);
             $check->execute();
             $results = $check->fetch(PDO::FETCH_ASSOC);
-            // if name exists, returns false.
-            if (empty($results['username'])) {
+            // if name is unavailable, returns false.
+            
+            if ($results['username']) {
                 return false;
             }
-
+            
+            
             if (!($password === $repeat)) {
                 echo "passwords do not match.";
+                
                 return false;
             }
             $q2 = "INSERT INTO accounts (username, password, rank) VALUES (:name, :password, :rank)";
@@ -51,6 +55,7 @@ class AccOps
             $create->bindValue(":password", $hashedPW);
             $create->bindValue(":rank", 2);
             $create->execute();
+            
             //you don't need to pass any details because the post is still available until you redirect.
             $this->logIn('/admin.php');
         } catch (Exception $e) {

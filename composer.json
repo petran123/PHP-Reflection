@@ -3,6 +3,7 @@
         "twig/twig": "^2.0",
         "symfony/http-foundation": "^4.3",
         "firebase/php-jwt": "^5.0",
-        "vlucas/phpdotenv": "^3.6"
+        "vlucas/phpdotenv": "^3.6",
+        "milo/github-api": "^1.4"
     }
 }
