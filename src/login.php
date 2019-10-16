@@ -16,5 +16,7 @@ if (!empty($_POST)) {
     $acc->login('/admin.php');
 }
 if (!empty($_GET)) {
+    if (isset($_GET['logout'])){
     $acc->logout('/admin.php');
+    }
 }

@@ -20,7 +20,8 @@ if (request()->cookies->has('access_token')) {
 		$details = $loginCookie->data;
 		$acc = new AccOps($details->userId, $details->rank);
 	}catch (Exception $e) {
-		die("cookie error");
+		//currently it simply refreshes the page if 15 minutes has passed. I could fix this in other ways but i'm okay with that for an admin panel.
+		header("Refresh:0");
 	}
 }
 if (!isset($acc)) {

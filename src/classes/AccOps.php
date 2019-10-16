@@ -111,7 +111,7 @@ class AccOps
         header("location: $location");
     }
 
-    private function createCookie($location)
+    public function createCookie($location = null)
     {
                 //add jwt here?
                 $expTime = time() + 3600;
@@ -126,8 +126,10 @@ class AccOps
                     ]
                 ], getenv("SECRET_KEY"),'HS256');
             
-                setcookie('access_token', $jwt, time() + (86400 * 30), "/", \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(), false, true);
-                header("location: $location");
+                setcookie('access_token', $jwt, time() + 900, "/", \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(), false, true);
+                if (!empty($location)) {
+                    header("location: $location");
+                }
     }
 
     public function getUsername()

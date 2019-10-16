@@ -11,4 +11,35 @@
     <a href="#">LinkedIn</a>
     <a href="#">somethingelsetbd</a>
 </div>
+
+<div class="contact-form">
+    <h3>Contact Me</h3>
+    {% if mailResult == 1 %}
+    <div class="success">
+        <h4>Mail Sent!</h4>
+    </div>
+    {% endif %}
+    {% if mailResult == 0 %}
+    <div class="failed">
+        <h4>Message Not Sent. Please make sure you have entered your details correctly.</h4>
+    </div>
+    {% endif %}
+    <form action="/contact.php" method="post" >
+
+        <label for="name">Your Name</label>
+        <input type="text" name="name" id="name" value=" {{ nameField }}">
+
+        <label for="email">Your Email</label>
+        <input type="email" name="email" id="email" value=" {{ emailField }}">
+
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" value=" {{ subjectField }}">
+
+        <label for="textform">Tell me what you think</label>
+        <textarea id="textform" name="textform" value=" {{ textformField }}"></textarea>
+
+        <input type="submit" value="Send">
+    </form>
+
+</div>
 {% endblock %}
