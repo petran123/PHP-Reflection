@@ -2,4 +2,10 @@
 
 require_once __DIR__ . '/../src/bootstrap.php';
 
-echo $twig->render('contact.html', ['l4' => 'selected', 'username' => $creds->username, 'rank' => $creds->rank]);
+if (isset($acc)) {
+    // var_dump($acc->getUsername());
+    echo $twig->render('contact.html', ['l4' => 'selected', 'username' => $acc->getUsername(), 'rank' => $acc->getRank()]);
+} else {
+    $acc = new AccOps();
+    echo $twig->render('contact.html', ['l4' => 'selected', 'username' => $acc->getUsername(), 'rank' => $acc->getRank()]);
+}

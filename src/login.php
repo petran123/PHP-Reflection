@@ -9,9 +9,12 @@
 // }
 
 // session_start();
+
+
 if (!empty($_POST)) {
-    AccOps::login('/admin.php');
+    $acc = new AccOps();
+    $acc->login('/admin.php');
 }
 if (!empty($_GET)) {
-    AccOps::Logout('/admin.php');
+    $acc->logout('/admin.php');
 }
