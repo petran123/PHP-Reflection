@@ -1,2 +1,5 @@
 vendor/
 tests/
+./src/*.env
+src/*.env
+src/.env
