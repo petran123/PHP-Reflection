@@ -16,12 +16,11 @@ if (!empty($_POST)) {
     $mail->Port = 587;
     $mail->SMTPSecure = PHPMAILER::ENCRYPTION_STARTTLS;
     $mail->SMTPAuth = true;
-    $mail->Username = 'petran.phpm@gmail.com';
-    //ask me if you need the password
-    $mail->Password = null;
-    $mail->setFrom('petran.phpm@gmail.com', 'Petros Papadopoulos');
+    $mail->Username = getenv("EMAIL");
+    $mail->Password = getenv("EMAIL_PASSWORD");
+    $mail->setFrom(getenv("EMAIL"), getenv("EMAIL_NAME"));
     $mail->addReplyTo(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING), filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING));
-    $mail->addAddress('petran.phpm@gmail.com', 'Petros Papadopoulos');
+    $mail->addAddress(getenv("EMAIL"), getenv("EMAIL_NAME"));
 
     if (!empty($_POST['subject'])) {
         $mail->Subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
@@ -36,6 +35,11 @@ if (!empty($_POST)) {
         die("There is no password by default. check src/contactMethods.php.");
     }
     if (!$mail->send()) {
+        session_start();
+        $_SESSION['name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+        $_SESSION['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+        $_SESSION['subject'] = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
+        $_SESSION['textform'] = filter_input(INPUT_POST, 'textform', FILTER_SANITIZE_STRING);
         header('location: contact.php?failed');
     } else {
         header('location: contact.php?success');
@@ -45,14 +49,15 @@ if (!empty($_POST)) {
 // use these two to set a confimation/error box
 if (!empty($_GET)) {
     if (isset($_GET['success'])){
-        $args['mailResult'] = true;
+        $args['mailResult'] = 1;
     }
     if (isset($_GET['failed'])) {
-        $args['mailResult'] = false;
+        $args['mailResult'] = -1;
+        session_start();
         //todo: find how to save these between redirects
-        # $args['nameField'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-        # $args['emailField'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
-        # $args['subjectField'] = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
-        # $args['textformField'] = filter_input(INPUT_POST, 'textform', FILTER_SANITIZE_STRING);
+        $args['nameField'] = $_SESSION['name'];
+        $args['emailField'] = $_SESSION['email'];
+        $args['subjectField'] = $_SESSION['subject'];
+        $args['textformField'] = $_SESSION['textform'];
     }
 }

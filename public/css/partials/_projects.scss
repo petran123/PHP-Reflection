@@ -1,0 +1,16 @@
+.github-profile {
+    display: flex;
+    border: solid 1px #999;
+    margin: 20px 0;
+    padding: 5px;
+    img {
+        width: 28%;
+    }
+    img,
+    a {
+        align-self: center;
+    }
+    a {
+        padding: 30px 0;
+    }
+}

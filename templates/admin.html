@@ -18,18 +18,33 @@
 <h1> Wrong Credentials </h1>
 {% endif %}
 <form action='/admin.php' method='post'>
-    <h1>Please log in</h1>
-    <div>
-        <label for='username'>username</label>
-        <input type='text' id='username' name='username'>
-    </div>
-    <div>
-        <label for='password'>password</label>
-        <input type='password' id='password' name='password'>
-    </div>
-    <input type='submit' value='Log In!'>
+    <table>
+    
+    <thead>
+        <tr>
+            <th><h1>Please log in</h1></th>
+        </tr>
+            </thead>
+        <tr>
+            <td><label for='username'>username</label></td>
+            <td><input type='text' id='username' name='username'></td>
+        </tr>
+        <tr>
+            <td><label for='password'>password</label></td>
+            <td><input type='password' id='password' name='password'></td>
+        </tr>
+        <tr>
+                <td><input type='submit' value='Log In!'></td>
+                <td><a href='/register.php'>Register</a></td>
+        </tr>
+        
+
+        
+        
+
+        
+    </table>
 </form>
-<a href='/register.php'>Register</a>
 {% endif %}
 
 {% endblock %}

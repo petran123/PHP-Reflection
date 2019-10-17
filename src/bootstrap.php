@@ -14,6 +14,8 @@ spl_autoload_register(function ($class) {
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
+$refresh = strtok($_SERVER['REQUEST_URI'], '?');
+
 if (request()->cookies->has('access_token')) {
 	try {
 		$loginCookie = \Firebase\JWT\JWT::decode($_COOKIE["access_token"], getenv('SECRET_KEY'), array('HS256'));
@@ -24,11 +26,19 @@ if (request()->cookies->has('access_token')) {
 		header("Refresh:0");
 	}
 }
+
 if (!isset($acc)) {
     $acc = new AccOps();   
 }
-$args = ['username' => $acc->getUsername(), 'rank' => $acc->getRank()];
 
+if (!empty($_GET)) {
+    if (isset($_GET['logout'])){
+	$acc->logout($refresh);
+    }
+}
+$args = [ 'username' => $acc->getUsername(),
+		'rank' => $acc->getRank(),
+		'refresh' => $refresh];
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates/');
 $twig = new \Twig\Environment($loader);

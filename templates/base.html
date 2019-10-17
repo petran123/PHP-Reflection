@@ -10,20 +10,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
+    <div class="mobile-nav">
+        <ul>
+            <li><h2><a href="./" class=" {{ l1 }}">Home</a></h2></li>
+            <li><h2><a href="projects.php" class=" {{ l2 }}">Projects</a></h2></li>
+            <li><h2><a href="about.php" class=" {{ l3 }}">About</a></h2></li>
+            <li><h2><a href="contact.php" class=" {{ l4 }}">Contact</a></h2></li>
+        </ul>
+
+        <div class="mobile-admin">
+        {% if rank > 1 %}
+            <h2><a href="admin.php" class="{{ l5 }}"> {{ username }}</a></h2>
+            <h2><a href="{{ refresh }}?logout">Log out</a></h2>
+        {% else %}
+            <h2><a href="admin.php" class="{{ l5 }}">Admin</a></h2>
+        {% endif %}
+        </div>
+    </div>
     <header>
-        <div class="mobile-menu-drawer">
-            <nav>
-                <ul>
-                    <li><h2><a href="./" class=" {{ l1 }}">Home</a></h2></li>
-                    <li><h2><a href="projects.php" class=" {{ l2 }}">Projects</a></h2></li>
-                    <li><h2><a href="about.php" class=" {{ l3 }}">About</a></h2></li>
-                    <li><h2><a href="contact.php" class=" {{ l4 }}">Contact</a></h2></li>
-                </ul>
-            </nav>
+        <div class="header">
+            <div class="wrapper flex-h">
+                <h3><a href="./" class="selected">Petros Papadopoulos</a></h3>
+                <nav>
+                    <ul>
+                        <li><h2><a href="./" class="{{ l1 }}">Home</a></h2></li>
+                        <li><h2><a href="projects.php" class="{{ l2 }}">Projects</a></h2></li>
+                        <li><h2><a href="about.php" class="{{ l3 }}">About</a></h2></li>
+                        <li><h2><a href="contact.php" class="{{ l4 }}">Contact</a></h2></li>
+                    </ul>
+                </nav>
+                <span id="mobile-menu"><i class="fas fa-bars"></i></span>
+            </div>
         </div>
     </header>
     <main>
-        <div class="container">
+        <div class="wrapper footer-fix">
     {% endblock %}
 {% block content %}
 
@@ -33,16 +54,18 @@
         </div>
     </main>
     <footer>
-        <div class="container footer-container">
+        <div class="wrapper footer-container">
         <p>&copy; 2019 Petros Papadopoulos</p>
-        {% if rank > 0 %}
+        {% if rank > 1 %}
             <a href="admin.php" class="admin {{ l5 }}"> {{ username }}</a>
-            <a href="admin.php?logout" class="admin {{ l5 }}"> Log out</a>
+            <a href="{{ refresh }}?logout" class="admin">Log out</a>
         {% else %}
         <a href="admin.php" class="admin {{ l5 }}">Admin</a>
         {% endif %}
         </div>
     </footer>
+    <script src="https://kit.fontawesome.com/e77a179e1a.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
 {% endblock %}

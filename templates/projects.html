@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="github-profile">
-    <a href="{{ projects.0.owner.html_url }}"><img src="{{ projects.0.owner.avatar_url }}" alt="Github profile picture"></a>
-    <a href="{{ projects.0.owner.html_url }}">{{ projects.0.owner.html_url }}</a>
-</div>
+<div class="github-page">
+    <div class="github-profile">
+        <img src="{{ projects.0.owner.avatar_url }}" alt="Github profile picture">
+        <a href="{{ projects.0.owner.html_url }}">{{ projects.0.owner.html_url }}</a>
+    </div>
 
-{% for number in projects %}
-<div class="github-project">
-    <a href="{{ number.html_url }}">{{ number.name }}</a>
-    <p> {{ number.description }} </p>
+    {% for number in projects %}
+    <div class="github-project">
+        <a href="{{ number.html_url }}">{{ number.name }}</a>
+        <p> {{ number.description }} </p>
+    </div>
 </div>
 {% endfor %}
 

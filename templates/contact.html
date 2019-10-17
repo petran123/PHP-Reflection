@@ -1,45 +1,94 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <p>use a table</p>
-    <h3>Mobile</h3>
-    <a href="tel:07845228330">07845228330</a>
-    <h3>Email</h3>
-    <a href="mailto:petran@tutanota.com">petran@tutanota.com</a>
-    <h3>Social Media</h3>
-    <a href="#">LinkedIn</a>
-    <a href="#">somethingelsetbd</a>
+<div class="wrapper flex-container">
+    
+    <div class="contact">
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2"><h3>Contact Details</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><h4>Mobile</h4></td>
+                    <td><a href="tel:07845228330">07845228330</a></td>
+                </tr>
+                <tr>
+                    <td><h4>Email</h4></td>
+                    <td><a href="mailto:petran@tutanota.com">petran@tutanota.com</a></td>
+                </tr>
+                <tr>
+                        <td><h4>Social Media</h4></td>
+                        <td><a href="#">LinkedIn</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="contact-form">
+        {% if mailResult == 1 %}
+        <div class="success">
+            <h4>Mail Sent!</h4>
+        </div>
+        {% endif %}
+        {% if mailResult == -1 %}
+        <div class="failed">
+            <h4>Message Not Sent. Please make sure you have entered your details correctly.</h4>
+        </div>
+        {% endif %}
+        <form action="/contact.php" method="post" >
+        <table>
+            <thead>
+                <tr>
+                    <th><h3>Contact Me</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><label for="name">Your Name</label></td>
+                    <td><input type="text" name="name" id="name" value="{{ nameField }}"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Your Email</label></td>
+                    <td><input type="email" name="email" id="email" value="{{ emailField }}"></td>
+                </tr>
+                <tr>
+                    <td><label for="subject">Subject</label></td>
+                    <td><input type="text" name="subject" id="subject" value="{{ subjectField }}"></td>
+                </tr>
+                <tr>
+                    <td><label for="textform">Tell me what you think</label></td>
+                    <td><textarea id="textform" name="textform" value="{{ textformField }}"></textarea></td>
+                </tr>
+                <tr>
+                    
+                    <td colspan="2"><input type="submit" id="submit" value="Send"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+    
+            
+            
+    
+            
+            
+    
+            
+            
+    
+            
+            
+    
+            
+        </form>
+    
+    </div>
 </div>
 
-<div class="contact-form">
-    <h3>Contact Me</h3>
-    {% if mailResult == 1 %}
-    <div class="success">
-        <h4>Mail Sent!</h4>
-    </div>
-    {% endif %}
-    {% if mailResult == 0 %}
-    <div class="failed">
-        <h4>Message Not Sent. Please make sure you have entered your details correctly.</h4>
-    </div>
-    {% endif %}
-    <form action="/contact.php" method="post" >
 
-        <label for="name">Your Name</label>
-        <input type="text" name="name" id="name" value=" {{ nameField }}">
-
-        <label for="email">Your Email</label>
-        <input type="email" name="email" id="email" value=" {{ emailField }}">
-
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" id="subject" value=" {{ subjectField }}">
-
-        <label for="textform">Tell me what you think</label>
-        <textarea id="textform" name="textform" value=" {{ textformField }}"></textarea>
-
-        <input type="submit" value="Send">
-    </form>
-
-</div>
 {% endblock %}

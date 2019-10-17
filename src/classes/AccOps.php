@@ -101,7 +101,7 @@ class AccOps
     //     header("location: $location");
     // }
 
-    public function logout($location) 
+    public function logout($location = null) 
     {
         // $_SESSION['username'] = null;
         // $_SESSION['rank'] = null;
@@ -142,7 +142,6 @@ class AccOps
             $stmt->execute();
             $results = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            //this is unfinished and i want to see what it dumps before i finish it.
             if ($results['username'] === null) {
                 return false;
             }
