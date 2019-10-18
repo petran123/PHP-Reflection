@@ -1,6 +1,5 @@
 html {
   height: 100%;
-  overflow: hidden;
 }
 
 h1,
@@ -11,6 +10,10 @@ p {
 h1 {
   font-size: 1.8rem;
   text-align: center;
+}
+
+a {
+  color: #0eac6a;
 }
 
 nav {
@@ -52,7 +55,6 @@ body {
   display: grid;
   -ms-grid-rows: 1fr auto;
       grid-template-rows: 1fr auto;
-  overflow: hidden;
 }
 
 footer {
@@ -156,6 +158,7 @@ H4 {
 }
 
 .mobile-nav {
+  display: none;
   background-color: #333;
   -webkit-box-shadow: 0px 0px 9px #333;
           box-shadow: 0px 0px 9px #333;
@@ -166,6 +169,7 @@ H4 {
   transition: transform .5s, ease;
   transition: transform .5s, ease, -webkit-transform .5s;
   position: fixed;
+  z-index: 1;
   padding-top: 56px;
   width: 100%;
   height: 100%;
@@ -190,12 +194,16 @@ H4 {
   padding-bottom: 50px;
 }
 
+.mobile-nav a {
+  margin-left: 35px;
+}
+
 .admin {
   display: none;
 }
 
 .wrapper {
-  width: 95%;
+  width: 92%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -262,12 +270,6 @@ H4 {
   margin: auto;
 }
 
-.flex-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 #submit {
   padding: 3px 20px;
   -webkit-box-sizing: border-box;
@@ -282,17 +284,27 @@ H4 {
   color: transparent;
 }
 
+.github-page h3 {
+  font-weight: 500;
+}
+
 .github-profile {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: solid 1px #999;
-  margin: 20px 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  margin: 10px 0;
   padding: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .github-profile img {
-  width: 28%;
+  width: 60%;
 }
 
 .github-profile img,
@@ -300,9 +312,142 @@ H4 {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  text-align: center;
 }
 
 .github-profile a {
-  padding: 30px 0;
+  padding: 0px 8px;
+}
+
+.github-profile,
+.github-project {
+  border: 1px solid #d1d5da;
+  background-color: rgba(255, 255, 255, 0.521);
+  -webkit-transition: background-color .2s ease;
+  transition: background-color .2s ease;
+}
+
+.github-profile:hover,
+.github-project:hover {
+  background-color: #ade1ff;
+}
+
+.github-project {
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  padding: 0 8px;
+}
+
+.github-project h5,
+.github-project p {
+  line-height: 0;
+}
+
+.projects-title {
+  display: inline-block;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+}
+
+.contact,
+.contact-form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success h4 {
+  border: solid 5px lightgreen;
+  border-radius: 3%;
+  background: lightgreen;
+}
+
+.failed h4 {
+  text-align: center;
+  border: solid 5px #FE757E;
+  border-radius: 3%;
+  background: #FE757E;
+}
+
+.personal-info {
+  text-align: center;
+}
+
+.contact td {
+  text-align: center;
+}
+
+.reg-table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+
+.reg-table table {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.inline-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+
+.inline-button .recaptcha,
+.inline-button a {
+  text-align: center;
+}
+
+.text-input {
+  border: solid 1px #999;
+  border-radius: 3px;
+}
+
+.button,
+button {
+  display: block;
+  border: solid 1px #151515;
+  background-color: #151515;
+  color: #0cda84;
+  border-radius: 3px;
+  margin-top: 30px;
+  padding: 5px 10px;
+  margin-bottom: 50px;
+  width: 199px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login-form {
+  max-width: 199px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login-form a {
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

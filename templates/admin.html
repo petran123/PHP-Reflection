@@ -5,46 +5,31 @@
 {% if rank == 2 %}
 <h1 class="useless">Super Secret Admin Dashboard</h1>
 <p>Technically the skeleton has been built. Now here's what is left, in no particular order:</p>
-<ol> 
+<ol>
+    <li>Turn the main page into a blog? hmm</li> 
     <li>additional admin functionality in other pages (such as?)</li>
-    <li>add a contact form with a captcha</li>
+    <li><i>add a contact form with a captcha</i></li>
     <li>move pretty much everything into a database to demonstrate my knowledge with it</li>
     <li>Add user list on this page, with a promote/demote button on those with rank = 3</li>
 </ol>
 <p>I have added a working admin registration form for demonstration</p>
-<p>I think the github list of projects will do the trick. what else should i show there?</p>
+<p>I think the github list of repos will do the trick as an API demo. what else should i show on projects?</p>
 {% else %}
-{% if rank == "wrong" %}
-<h1> Wrong Credentials </h1>
-{% endif %}
-<form action='/admin.php' method='post'>
-    <table>
-    
-    <thead>
-        <tr>
-            <th><h1>Please log in</h1></th>
-        </tr>
-            </thead>
-        <tr>
-            <td><label for='username'>username</label></td>
-            <td><input type='text' id='username' name='username'></td>
-        </tr>
-        <tr>
-            <td><label for='password'>password</label></td>
-            <td><input type='password' id='password' name='password'></td>
-        </tr>
-        <tr>
-                <td><input type='submit' value='Log In!'></td>
-                <td><a href='/register.php'>Register</a></td>
-        </tr>
-        
+<div class="flexbox">
+    {% if rank == "wrong" %}
+    <h1> Wrong Credentials </h1>
+    {% endif %}
+    <form id="login-form" action='/admin.php' method='post'>
+        <h1>Please log in</h1>
+    <label for='username'>username</label>
+    <input type='text' id='username' name='username'>
+    <label for='password'>password</label>
+    <input type='password' id='password' name='password'>
 
-        
-        
-
-        
-    </table>
-</form>
+        <input class="button" type='submit' value='Log In!'>
+        <a href='/register.php'>Register</a>
+    </form>
+</div>
 {% endif %}
 
 {% endblock %}

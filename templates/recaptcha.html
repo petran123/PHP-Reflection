@@ -1,0 +1,9 @@
+<div class="recaptcha">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+    function buttonSubmit() {
+        document.querySelector('#{{ formId }}').submit();
+    }
+    </script>
+    <button class="g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="buttonSubmit">{{ button }}</button>
+</div>

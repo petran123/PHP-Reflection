@@ -2,8 +2,8 @@
 
 html {
     height: 100%;
-    overflow: hidden;
 }
+
 
 h1,
 p {
@@ -13,6 +13,10 @@ p {
 h1 {
     font-size: 1.8rem;
     text-align: center;
+}
+
+a {
+    color: rgb(14, 172, 106);
 }
 
 nav {
@@ -47,7 +51,6 @@ body {
     min-height: 100%;
     display: grid;
     grid-template-rows: 1fr auto;
-    overflow: hidden;
 }
 
 footer {

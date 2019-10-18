@@ -1,12 +1,42 @@
 <?php
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 if (!empty($_POST)) {
+
+
+    
+
+    
+
+
+    // captcha management
+    //this captcha code is a copypaste. replace it with an object.
+    $postData = ['secret' => getenv("RECAPTCHA_SECRET_KEY"), 'response' => $_POST['g-recaptcha-response']];
+    $recaptcha = http_build_query($postData);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $recaptcha);
+  
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  
+    $server_output = curl_exec ($ch);
+  
+    curl_close ($ch);
+
+    $decoded = json_decode($server_output);
+    // end of captcha
+
+
+
+
+
+
+
+
+    
     $err = false;
     $msg = '';
-
-    //these are pulled from the example code and will stay here until i know what they do
     $email = '';
 
     $mail = new PHPMailer;
@@ -31,19 +61,18 @@ if (!empty($_POST)) {
     //phpmailer can detect if body is empty so i don't have to.....right?
     $mail->msgHTML(filter_input(INPUT_POST, 'textform', FILTER_SANITIZE_STRING));
 
-    if (empty($mail->Password)) {
-        die("There is no password by default. check src/contactMethods.php.");
-    }
-    if (!$mail->send()) {
-        session_start();
-        $_SESSION['name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-        $_SESSION['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
-        $_SESSION['subject'] = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
-        $_SESSION['textform'] = filter_input(INPUT_POST, 'textform', FILTER_SANITIZE_STRING);
-        header('location: contact.php?failed');
-    } else {
-        header('location: contact.php?success');
-    }
+
+        //if captcha returns false, the $mail->send method is skipped
+        if ($decoded->success === false || !$mail->send()) {
+            $_SESSION['name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+            $_SESSION['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+            $_SESSION['subject'] = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
+            $_SESSION['textform'] = filter_input(INPUT_POST, 'textform', FILTER_SANITIZE_STRING);
+            header('location: contact.php?failed');
+        } else {
+            header('location: contact.php?success');
+        }
+
 }
 
 // use these two to set a confimation/error box
@@ -53,8 +82,6 @@ if (!empty($_GET)) {
     }
     if (isset($_GET['failed'])) {
         $args['mailResult'] = -1;
-        session_start();
-        //todo: find how to save these between redirects
         $args['nameField'] = $_SESSION['name'];
         $args['emailField'] = $_SESSION['email'];
         $args['subjectField'] = $_SESSION['subject'];

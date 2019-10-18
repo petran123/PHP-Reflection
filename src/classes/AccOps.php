@@ -16,18 +16,43 @@ class AccOps
     {
         try {
             global $db;
-            $name = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-            $repeat = filter_input(INPUT_POST, 'repeatpassword', FILTER_SANITIZE_STRING);
+            $name = filter_input(INPUT_POST, 'regUsername', FILTER_SANITIZE_STRING);
+            $password = filter_input(INPUT_POST, 'regPassword', FILTER_SANITIZE_STRING);
+            $repeat = filter_input(INPUT_POST, 'regRepeat', FILTER_SANITIZE_STRING);
 
             // i know that these two are too short to be secure but this is just a proof of concept.
+
+            //if captcha is wrong, return error
+            //this code is a copypaste. replace it with an object
+            $postData = ['secret' => getenv("RECAPTCHA_SECRET_KEY"), 'response' => $_POST['g-recaptcha-response']];
+            $recaptcha = http_build_query($postData);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $recaptcha);
+          
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          
+            $server_output = curl_exec ($ch);
+          
+            curl_close ($ch);
+        
+            $decoded = json_decode($server_output);
+
+            if ($decoded->success === false) {
+                header('location: register.php?error=captcha');
+                return false;
+            }
+
+            //end of captcha
+
             if (strlen($name) < 4) {
-                echo "username too short";
+                header('location: register.php?error=usnlen');
                 return false;
             }
 
             if (strlen($password) < 4) {
-                echo "password too short";
+                header('location: register.php?error=pwdlen');
                 return false;
             }
             
@@ -40,13 +65,13 @@ class AccOps
             // if name is unavailable, returns false.
             
             if ($results['username']) {
+                header('location: register.php?error=usntaken');
                 return false;
             }
             
             
             if (!($password === $repeat)) {
-                echo "passwords do not match.";
-                
+                header('location: register.php?error=rep');
                 return false;
             }
             $q2 = "INSERT INTO accounts (username, password, rank) VALUES (:name, :password, :rank)";
@@ -58,6 +83,7 @@ class AccOps
             
             //you don't need to pass any details because the post is still available until you redirect.
             $this->logIn('/admin.php');
+            // $this->createCookie('/admin.php');
         } catch (Exception $e) {
             throw $e;
         }
@@ -65,8 +91,21 @@ class AccOps
 
     public function login($location)
     {
-        $name = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        //i think the reason why account creation doesn't auto login anymore is because i changed the post names for account creation.
+        //i'm sure there's a better way to write this
+        if (!empty(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING))) {
+            $name = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+        } else {
+            $name = filter_input(INPUT_POST, 'regUsername', FILTER_SANITIZE_STRING);
+        }
+                
+        if (!empty(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING))) {
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        } else {
+            $password = filter_input(INPUT_POST, 'regPassword', FILTER_SANITIZE_STRING);
+        }
+        
+
 
         try {
             global $db;

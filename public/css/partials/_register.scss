@@ -1,0 +1,37 @@
+.reg-table {
+    display: flex;
+    flex-flow: column nowrap;
+    table {
+        align-self: center;
+    }
+}
+
+.inline-button {
+    display: flex;
+    flex-flow: column nowrap;
+    .recaptcha,
+    a {
+        text-align: center;
+    }
+
+}
+
+.text-input  {
+    border: solid 1px #999;
+    border-radius: 3px;
+}
+
+.button,
+button {
+    display: block;
+    border: solid 1px #151515;
+    background-color: #151515;
+    color: #0cda84;
+    border-radius: 3px;
+    margin-top: 30px;
+    padding: 5px 10px;
+    margin-bottom: 50px;
+    width: 199px;
+    margin-left: auto;
+    margin-right: auto;
+}

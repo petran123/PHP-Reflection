@@ -14,6 +14,9 @@ spl_autoload_register(function ($class) {
 $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
+session_start();
+// var_dump($_SESSION);
+
 $refresh = strtok($_SERVER['REQUEST_URI'], '?');
 
 if (request()->cookies->has('access_token')) {

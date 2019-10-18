@@ -1,21 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action='/register.php' method='post'>
+<form id="register" action="/register.php" method="post">
     <h1>Enter Account Details</h1>
-    <div>
-        <label for='username'>Username</label>
-        <input type='text' id='username' name='username'>
+    {% if regErr is defined %}
+    <div class="failed">
+    <h4>{{ regErr }}</h4>
     </div>
-    <div>
-        <label for='password'>Password</label>
-        <input type='password' id='password' name='password'>
+    {% endif %}
+    <div class="reg-table">
+        <table>
+        <tr><td><label for="regUsername">Username</label></td></tr>
+        <tr><td><input class="text-input" type="text" id="regUsername" name="regUsername"></td></tr>
+        
+        <tr><td><label for="regPassword">Password</label></td></tr>
+        <tr><td><input class="text-input" type="Password" id="regPassword" name="regPassword"></td></tr>
+        <tr><td><label for="regRepeat">Repeat Password</label></td></tr>
+        <tr><td><input class="text-input" type="password" id="regRepeat" name="regRepeat"></td></tr>
+        </table>
+        <div class="inline-button">
+        {{ include('recaptcha.html') }}
+        <a href="/admin.php">Already have an account?</a>
+        </div>
     </div>
-    <div>
-        <label for='repeatpassword'>Repeat Password</label>
-        <input type='password' id='repeatpassword' name='repeatpassword'>
-    </div>
-    <input type='submit' value='Register'>
+</div>
 </form>
-<a href='/admin.php'>Log in</a>
+
 {% endblock %}
