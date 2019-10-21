@@ -13,17 +13,18 @@
     <div class="mobile-nav">
         <ul>
             <li><h2><a href="./" class=" {{ l1 }}">Home</a></h2></li>
-            <li><h2><a href="projects.php" class=" {{ l2 }}">Projects</a></h2></li>
-            <li><h2><a href="about.php" class=" {{ l3 }}">About</a></h2></li>
-            <li><h2><a href="contact.php" class=" {{ l4 }}">Contact</a></h2></li>
+            <li><h2><a href="blog.php" class=" {{ l2 }}">Blog</a></h2></li>
+            <li><h2><a href="projects.php" class=" {{ l3 }}">Projects</a></h2></li>
+            <li><h2><a href="about.php" class=" {{ l4 }}">About</a></h2></li>
+            <li><h2><a href="contact.php" class=" {{ l5 }}">Contact</a></h2></li>
         </ul>
 
         <div class="mobile-admin">
         {% if rank > 1 %}
-            <h2><a href="admin.php" class="{{ l5 }}"> {{ username }}</a></h2>
+            <h2><a href="admin.php" class="{{ l6 }}"> {{ username }}</a></h2>
             <h2><a href="{{ refresh }}?logout">Log out</a></h2>
         {% else %}
-            <h2><a href="admin.php" class="{{ l5 }}">Admin</a></h2>
+            <h2><a href="admin.php" class="{{ l6 }}">Admin</a></h2>
         {% endif %}
         </div>
     </div>
@@ -34,9 +35,10 @@
                 <nav>
                     <ul>
                         <li><h2><a href="./" class="{{ l1 }}">Home</a></h2></li>
-                        <li><h2><a href="projects.php" class="{{ l2 }}">Projects</a></h2></li>
-                        <li><h2><a href="about.php" class="{{ l3 }}">About</a></h2></li>
-                        <li><h2><a href="contact.php" class="{{ l4 }}">Contact</a></h2></li>
+                        <li><h2><a href="blog.php" class="{{ l2 }}">Blog</a></h2></li>
+                        <li><h2><a href="projects.php" class="{{ l3 }}">Projects</a></h2></li>
+                        <li><h2><a href="about.php" class="{{ l4 }}">About</a></h2></li>
+                        <li><h2><a href="contact.php" class="{{ l5 }}">Contact</a></h2></li>
                     </ul>
                 </nav>
                 <span id="mobile-menu"><i class="fas fa-bars"></i></span>
@@ -57,10 +59,10 @@
         <div class="wrapper footer-container">
         <p>&copy; 2019 Petros Papadopoulos</p>
         {% if rank > 1 %}
-            <a href="admin.php" class="admin {{ l5 }}"> {{ username }}</a>
+            <a href="admin.php" class="admin {{ l6 }}"> {{ username }}</a>
             <a href="{{ refresh }}?logout" class="admin">Log out</a>
         {% else %}
-        <a href="admin.php" class="admin {{ l5 }}">Admin</a>
+        <a href="admin.php" class="admin {{ l6 }}">Admin</a>
         {% endif %}
         </div>
     </footer>

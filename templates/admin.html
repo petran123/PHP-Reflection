@@ -16,14 +16,16 @@
 <p>I think the github list of repos will do the trick as an API demo. what else should i show on projects?</p>
 {% else %}
 <div class="flexbox">
-    {% if rank == "wrong" %}
-    <h1> Wrong Credentials </h1>
-    {% endif %}
     <form id="login-form" action='/admin.php' method='post'>
         <h1>Please log in</h1>
-    <label for='username'>username</label>
+        {% if rank == "wrong" %}
+        <div class="failed">
+            <h4> Wrong Credentials </h4>
+        </div>
+    {% endif %}
+    <label for='username'>Username</label>
     <input type='text' id='username' name='username'>
-    <label for='password'>password</label>
+    <label for='password'>Password</label>
     <input type='password' id='password' name='password'>
 
         <input class="button" type='submit' value='Log In!'>

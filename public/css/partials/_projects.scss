@@ -20,21 +20,25 @@
     a {
         padding: 0px 8px;
     }
+    &:hover {
+        a {
+            color: $linkHover;
+        }
+    }
 }
 
 .github-profile,
 .github-project {
-    border: 1px solid #d1d5da;
-    background-color: rgba(255, 255, 255, 0.521);
+    border: 1px solid $githubBorder;
+    background-color: $githubBG;
     &:hover {
-        background-color: rgb(173, 225, 255);
+        background-color: $githubHover;
         
     }
     transition: background-color .2s ease;
 }
 
 .github-project {
-    border: 1px solid #d1d5da;
     border-radius: 3px;
     margin-bottom: 15px;
     padding: 0 8px;

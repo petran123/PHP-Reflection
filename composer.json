@@ -6,6 +6,7 @@
         "vlucas/phpdotenv": "^3.6",
         "milo/github-api": "^1.4",
         "phpmailer/phpmailer": "^6.1",
-        "league/oauth2-google": "^3.0"
+        "league/oauth2-google": "^3.0",
+        "ezyang/htmlpurifier": "^4.11"
     }
 }

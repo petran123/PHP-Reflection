@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if rank == 2 %}
+    <div class="new-article-button">
+        <a href="/article.php?new"><h2>New Entry</h2></a>
+    </div>
+{% endif %}
+
+{% if notFound == true %}
+<div class="failed">
+    <h4>Page not found. Redirected to page 1</h4>
+</div>
+{% endif %}
+
+{% if success == true %}
+<div class="success">
+    <h4>Entry Successful!</h4>
+</div>
+{% endif %}
+
+{# slice takes offset, length #}
+{% for num in articleList|slice(articlePages.currentPage * articlePages.postsPerPage - articlePages.postsPerPage, articlePages.postsPerPage) %}    
+    {{ include('articleList.html') }}
+{% endfor %}
+
+
+<div class="pages">
+{# this is by no means the best solution #}
+<h4>Pages:</h4>
+    <ul class="page-list">
+
+    <li><a href="?page=1" class="page">1</a></li>
+
+    {# {% if articlePages.currentPage == 5 %}
+        <li><a href="?page=2" class="page">2</a></li> #}
+
+    {% if articlePages.currentPage >= 5 %}
+        <li>...</li>
+    {% endif %}
+
+    {# for page number 5 or higher #}
+    {% for i in 2..articlePages.totalPages -1 %}
+        {% if (articlePages.currentPage > i and articlePages.currentPage - i <= 2) or (articlePages.currentPage == i) or (articlePages.currentPage < i and i - articlePages.currentPage <= 2) %}
+        <li><a href="?page={{i}}" class="page">{{i}}</a></li>
+        {% endif %}
+    {% endfor %}
+
+    {# {% if articlePages.totalPages - articlePages.currentPage == 4 %}
+        <li><a href="?page=19" class="page">19</a></li> #}
+
+    {% if articlePages.totalPages - articlePages.currentPage >= 4 %}
+        <li>...</li>
+    {% endif %}
+
+        <li><a href="?page={{ articlePages.totalPages }}" class="page">{{ articlePages.totalPages }}</a></li>
+    </ul>
+</div>
+{% endblock %}

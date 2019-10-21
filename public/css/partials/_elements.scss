@@ -7,7 +7,7 @@ html {
 
 h1,
 p {
-    color: #242424;
+    color: $pColor;
 }
 
 h1 {
@@ -16,7 +16,11 @@ h1 {
 }
 
 a {
-    color: rgb(14, 172, 106);
+    color: $linkColor;
+    transition: color 0.1s;
+    &:hover {
+        color: $linkHover;
+    }
 }
 
 nav {
@@ -35,19 +39,19 @@ nav {
         padding: 0 2px;
         font-size: .79rem;
         &:hover {
-            background-color: #444;
+            background-color: $liHover;
         }
     }
 }
 
 .header,
 footer {
-    background-color: #151515;
+    background-color: $headerBG;
     min-height: 55px;
 }
 
 body {
-    background-color: #f0f0f0;
+    background-color: $unselected;
     min-height: 100%;
     display: grid;
     grid-template-rows: 1fr auto;
@@ -67,7 +71,7 @@ footer {
     span,
     h3,
     p {
-        color: rgb(12, 218, 132);
+        color: $selected;
     }
 }
 
@@ -84,7 +88,7 @@ header,
 footer,
 .mobile-nav {
     a {
-        color: #f0f0f0;
+        color: $unselected;
         padding: 1rem 0px;
         // &:hover { try this instead of li. see what works best
         //     background-color: #444;
@@ -94,7 +98,7 @@ footer,
         // }
         &.selected {
             text-shadow: 2px 2px 1px black ;
-            color: rgb(12, 218, 132);
+            color: $selected;
         }
     }
 }

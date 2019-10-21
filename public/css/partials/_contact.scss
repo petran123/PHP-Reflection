@@ -10,14 +10,14 @@
 }
 
 .success h4 {
-    border: solid 5px lightgreen;
+    border: solid 5px $success;
     border-radius: 3%;
-    background: lightgreen;
+    background: $success;
 }
 
 .failed h4 {
     text-align: center;
-    border: solid 5px #FE757E;
+    border: solid 5px $failed;
     border-radius: 3%;
-    background: #FE757E;
+    background: $failed;
 }

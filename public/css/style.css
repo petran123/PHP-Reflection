@@ -13,7 +13,13 @@ h1 {
 }
 
 a {
-  color: #0eac6a;
+  color: #0bb36b;
+  -webkit-transition: color 0.1s;
+  transition: color 0.1s;
+}
+
+a:hover {
+  color: black;
 }
 
 nav {
@@ -179,10 +185,6 @@ H4 {
           flex-flow: column;
 }
 
-.mobile-nav * {
-  color: #242424;
-}
-
 .mobile-nav ul {
   list-style: none;
   margin-top: -7px;
@@ -319,6 +321,10 @@ H4 {
   padding: 0px 8px;
 }
 
+.github-profile:hover a {
+  color: black;
+}
+
 .github-profile,
 .github-project {
   border: 1px solid #d1d5da;
@@ -333,7 +339,6 @@ H4 {
 }
 
 .github-project {
-  border: 1px solid #d1d5da;
   border-radius: 3px;
   margin-bottom: 15px;
   padding: 0 8px;

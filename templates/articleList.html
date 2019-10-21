@@ -1,0 +1,6 @@
+<div class="article-container">
+    <h2><a href="article.php?id={{ num.id }}">{{ num.title }}</a></h2>
+    <p class="date">Posted on {{ num.date_posted }}</p>
+    <p>{{ num.content|length > 144 ? num.content|slice(0, 144) ~ '...' : num.content }}</p>
+    <a href="article.php?id={{ num.id }}">Read More</a>
+</div>
