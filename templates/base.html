@@ -1,6 +1,6 @@
 {% block head %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Petros Papadopoulos</title>
@@ -20,7 +20,7 @@
         </ul>
 
         <div class="mobile-admin">
-        {% if rank > 1 %}
+        {% if rank >= 1 %}
             <h2><a href="admin.php" class="{{ l6 }}"> {{ username }}</a></h2>
             <h2><a href="{{ refresh }}?logout">Log out</a></h2>
         {% else %}
@@ -46,6 +46,7 @@
         </div>
     </header>
     <main>
+        <div class="menu-overlay"></div>
         <div class="wrapper footer-fix">
     {% endblock %}
 {% block content %}
@@ -58,7 +59,7 @@
     <footer>
         <div class="wrapper footer-container">
         <p>&copy; 2019 Petros Papadopoulos</p>
-        {% if rank > 1 %}
+        {% if rank >= 1 %}
             <a href="admin.php" class="admin {{ l6 }}"> {{ username }}</a>
             <a href="{{ refresh }}?logout" class="admin">Log out</a>
         {% else %}

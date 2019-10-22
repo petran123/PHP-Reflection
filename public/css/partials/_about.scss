@@ -1,7 +1,12 @@
 .personal-info {
     text-align: center;
+    padding-top: 40px;
 }
 
-.contact td {
-    text-align: center;
+.contact {
+    line-height: .5;
+    a {
+        display: block;
+        line-height: 2;
+    }
 }

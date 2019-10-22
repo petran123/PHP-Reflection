@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if rank == 2 %}
+{% if rank >= 2 %}
     <div class="new-article-button">
-        <a href="/article.php?new"><h2>New Entry</h2></a>
+        <h2><a href="/article.php?new">New Entry</a></h2>
     </div>
 {% endif %}
 
@@ -15,7 +15,7 @@
 
 {% if success == true %}
 <div class="success">
-    <h4>Entry Successful!</h4>
+    <h4>Operation Successful</h4>
 </div>
 {% endif %}
 
@@ -26,34 +26,23 @@
 
 
 <div class="pages">
-{# this is by no means the best solution #}
-<h4>Pages:</h4>
+{# I'm not sure that this pagination system is the best but it hasn't failed so far #}
     <ul class="page-list">
-
-    <li><a href="?page=1" class="page">1</a></li>
-
-    {# {% if articlePages.currentPage == 5 %}
-        <li><a href="?page=2" class="page">2</a></li> #}
-
-    {% if articlePages.currentPage >= 5 %}
-        <li>...</li>
-    {% endif %}
-
-    {# for page number 5 or higher #}
-    {% for i in 2..articlePages.totalPages -1 %}
-        {% if (articlePages.currentPage > i and articlePages.currentPage - i <= 2) or (articlePages.currentPage == i) or (articlePages.currentPage < i and i - articlePages.currentPage <= 2) %}
+    {% for i in 1..articlePages.totalPages %}
+        {% if articlePages.currentPage == i %}
+        <li class="current-page">{{i}}</li>
+        {% elseif (articlePages.currentPage > i and articlePages.currentPage - i <= 2) or 
+        (articlePages.currentPage < i and i - articlePages.currentPage <= 2) or 
+        (i == 1) or 
+        (i == articlePages.totalPages) or 
+        (i == 2 and articlePages.currentPage == 5) or 
+        (i == articlePages.totalPages - 1 and articlePages.currentPage == articlePages.totalPages - 4) %}
         <li><a href="?page={{i}}" class="page">{{i}}</a></li>
+        {% elseif (i == 2) or (i == articlePages.totalPages - 1)%}
+            <li>...</li>
         {% endif %}
     {% endfor %}
 
-    {# {% if articlePages.totalPages - articlePages.currentPage == 4 %}
-        <li><a href="?page=19" class="page">19</a></li> #}
-
-    {% if articlePages.totalPages - articlePages.currentPage >= 4 %}
-        <li>...</li>
-    {% endif %}
-
-        <li><a href="?page={{ articlePages.totalPages }}" class="page">{{ articlePages.totalPages }}</a></li>
     </ul>
 </div>
 {% endblock %}

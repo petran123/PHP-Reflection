@@ -16,6 +16,9 @@ a {
   color: #0bb36b;
   -webkit-transition: color 0.1s;
   transition: color 0.1s;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 a:hover {
@@ -61,6 +64,8 @@ body {
   display: grid;
   -ms-grid-rows: 1fr auto;
       grid-template-rows: 1fr auto;
+  -webkit-transition: background-color .4s ease;
+  transition: background-color .4s ease;
 }
 
 footer {
@@ -120,6 +125,30 @@ main {
   padding-top: 55px;
 }
 
+textarea {
+  height: 160px;
+}
+
+.menu-overlay {
+  position: fixed;
+  /* Sit on top of the page content */
+  display: none;
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 100%;
+  /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  /* Black background with opacity */
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+  z-index: 0;
+  /* Specify a stack order in case you're using a different order for other elements */
+}
+
 * {
   text-decoration: none;
   font-family: sans-serif;
@@ -164,10 +193,10 @@ H4 {
 }
 
 .mobile-nav {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: #333;
-  -webkit-box-shadow: 0px 0px 9px #333;
-          box-shadow: 0px 0px 9px #333;
   -webkit-transform: translateX(-105vw);
           transform: translateX(-105vw);
   -webkit-transition: ease, -webkit-transform .5s;
@@ -202,6 +231,10 @@ H4 {
 
 .admin {
   display: none;
+}
+
+ul li {
+  display: inline;
 }
 
 .wrapper {
@@ -257,8 +290,8 @@ H4 {
 }
 
 .wrapper .flexbox .flex-p {
-  margin: 0 3%;
-  max-width: 361px;
+  margin: auto;
+  padding-bottom: 80px;
 }
 
 .image-container {
@@ -276,6 +309,32 @@ H4 {
   padding: 3px 20px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.success,
+.failed {
+  -webkit-animation: 5s turnInvisible;
+          animation: 5s turnInvisible;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes turnInvisible {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes turnInvisible {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .useless {
@@ -325,6 +384,11 @@ H4 {
   color: black;
 }
 
+.github-profile h5 {
+  text-align: center;
+  line-height: 0;
+}
+
 .github-profile,
 .github-project {
   border: 1px solid #d1d5da;
@@ -365,6 +429,11 @@ H4 {
 .contact-form {
   margin-left: auto;
   margin-right: auto;
+  width: 85%;
+}
+
+.other a {
+  padding: 5px 0;
 }
 
 .success h4 {
@@ -382,10 +451,16 @@ H4 {
 
 .personal-info {
   text-align: center;
+  padding-top: 40px;
 }
 
-.contact td {
-  text-align: center;
+.contact {
+  line-height: .5;
+}
+
+.contact a {
+  display: block;
+  line-height: 2;
 }
 
 .reg-table {
@@ -439,8 +514,10 @@ button {
   margin-right: auto;
 }
 
-#login-form {
-  max-width: 199px;
+#login-form,
+#contact-form,
+form {
+  width: 95%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -452,7 +529,44 @@ button {
   margin-right: auto;
 }
 
-#login-form a {
+#login-form a,
+#contact-form a,
+form a {
   text-align: center;
+}
+
+#login-form label,
+#contact-form label,
+form label {
+  line-height: 2;
+}
+
+.centered {
+  text-align: center;
+}
+
+.new-article-button {
+  text-align: center;
+  padding: 20px;
+}
+
+.article-container a {
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+.page-list {
+  padding-top: 30px;
+  text-align: center;
+  padding-left: 0;
+}
+
+.page,
+.current-page {
+  padding: 5px;
+}
+
+.current-page {
+  border: solid 1px #d1d5da;
 }
 /*# sourceMappingURL=style.css.map */

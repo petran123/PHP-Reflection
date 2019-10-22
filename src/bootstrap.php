@@ -33,11 +33,11 @@ if (!isset($acc)) {
     $acc = new AccOps();   
 }
 
-if (!empty($_GET)) {
-    if (isset($_GET['logout'])){
+
+if (isset($_GET['logout'])){
 	$acc->logout($refresh);
-    }
 }
+
 $args = [ 'username' => $acc->getUsername(),
 		'rank' => $acc->getRank(),
 		'refresh' => $refresh];

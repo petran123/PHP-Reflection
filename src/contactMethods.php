@@ -62,7 +62,7 @@ if (!empty($_POST)) {
     $mail->msgHTML(filter_input(INPUT_POST, 'textform', FILTER_SANITIZE_STRING));
 
 
-        //if captcha returns false, the $mail->send method is skipped
+        //if captcha returns false, the $mail->send method is not run
         if ($decoded->success === false || !$mail->send()) {
             $_SESSION['name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
             $_SESSION['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);

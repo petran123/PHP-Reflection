@@ -165,7 +165,7 @@ class AccOps
                     ]
                 ], getenv("SECRET_KEY"),'HS256');
             
-                setcookie('access_token', $jwt, time() + 900, "/", \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(), false, true);
+                setcookie('access_token', $jwt, time() + 3600, "/", \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(), false, true);
                 if (!empty($location)) {
                     header("location: $location");
                 }
@@ -193,5 +193,45 @@ class AccOps
     public function getRank()
     {
         return $this->rank;
+    }
+
+    public function getUsers()
+    {
+        try {
+            global $db;
+            $q = "SELECT id, username, rank FROM accounts";
+            $stmt = $db->prepare($q);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function promote($id) 
+    {
+        try {
+            global $db;
+            $q = "UPDATE accounts SET rank = 2 WHERE id = :id";
+            $stmt = $db->prepare($q);
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            throw $e;
+        }
+        
+    }
+
+    public function demote($id) 
+    {
+        try {
+            global $db;
+            $q = "UPDATE accounts SET rank = 1 WHERE id = :id";
+            $stmt = $db->prepare($q);
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 }

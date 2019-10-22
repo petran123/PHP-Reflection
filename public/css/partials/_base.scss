@@ -1,3 +1,20 @@
+// mobile overlay / 
+
+.menu-overlay {
+    position: fixed; /* Sit on top of the page content */
+    // display: none; /* Hidden by default */
+    display: none;
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0); /* Black background with opacity */
+    transition: background-color 0.5s ease;
+    z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
+  }
+
 // Head ------------------------------------ /
 * {
     text-decoration: none;
@@ -36,9 +53,9 @@ H4 {
 }
 
 .mobile-nav {
-    display: none;
+    display: flex;
     background-color: $backgroundColorDark;
-    box-shadow: 0px 0px 9px $backgroundColorDark;
+    // box-shadow: 0px 0px 9px $backgroundColorDark;
     transform: translateX(-105vw);
     transition: transform .5s, ease;
     position: fixed;
@@ -68,6 +85,9 @@ H4 {
 
 // Body -------------------------------- /
 
+ul li {
+    display: inline
+}
 .wrapper {
     width: 92%;
     margin-left: auto;
@@ -99,8 +119,8 @@ H4 {
             flex-flow: column;
         }
         .flex-p {
-            margin: 0 3%;
-            max-width: 361px;
+            margin: auto;
+            padding-bottom: 80px;
         }
     }
 }
@@ -116,4 +136,16 @@ H4 {
 #submit {
     padding: 3px 20px;
     box-sizing: border-box;
+}
+
+.success,
+.failed {
+    animation: 5s turnInvisible;
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes turnInvisible {
+    0% { opacity: 1}
+    100% { opacity: 0}
 }

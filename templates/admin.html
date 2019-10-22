@@ -2,18 +2,53 @@
 
 {% block content %}
 
-{% if rank == 2 %}
-<h1 class="useless">Super Secret Admin Dashboard</h1>
-<p>Technically the skeleton has been built. Now here's what is left, in no particular order:</p>
-<ol>
-    <li>Turn the main page into a blog? hmm</li> 
-    <li>additional admin functionality in other pages (such as?)</li>
-    <li><i>add a contact form with a captcha</i></li>
-    <li>move pretty much everything into a database to demonstrate my knowledge with it</li>
-    <li>Add user list on this page, with a promote/demote button on those with rank = 3</li>
-</ol>
-<p>I have added a working admin registration form for demonstration</p>
-<p>I think the github list of repos will do the trick as an API demo. what else should i show on projects?</p>
+{% if rank >= 2 %}
+<div class="user-list">
+    {% if altered == 'success' %}
+        <div class="success">
+            <h4>Rank Changed Successfuly</h4>
+        </div>
+        {% elseif altered == 'failed' %}
+        <div class="failed">
+            <h4>Something went wrong</h4>
+        </div>
+    {% endif %}
+    
+    <h1>User List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>username</th>
+                <th>Rank</th>
+                <th>Promote/Demote</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for num in userList %}
+            <tr>
+                <td>{{ num.id }}</td>
+                <td>{{ num.username }}</td>
+                <td>{{ num.rank }}</td>
+                {% if rank == 3 %}
+                <form action='/admin.php' method='post'>
+                    {% if num.rank == 1 %}
+                    <input type="hidden" name="promote" value="{{ num.id }}">
+                    <td class="centered"><input type="submit" class="adminbutton" value="Promote"></td>
+                    {% elseif num.rank ==2 %}
+                    <input type="hidden" name="demote" value="{{ num.id }}">
+                    <td class="centered"><input type="submit" class="adminbutton" value="Demote"></td>
+                    {% endif %}
+                </form>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% elseif rank == 1 %}
+<p>You have successfully created your account, but You are not an admin, and cannot see this content.</p>
 {% else %}
 <div class="flexbox">
     <form id="login-form" action='/admin.php' method='post'>

@@ -4,28 +4,21 @@
 <div class="wrapper flex-container">
     
     <div class="contact">
+        <h3>Contact Details</h3>
+            <h4>Mobile</h4>
+            <a href="tel:07845228330">07845228330</a>
 
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2"><h3>Contact Details</h3></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><h4>Mobile</h4></td>
-                    <td><a href="tel:07845228330">07845228330</a></td>
-                </tr>
-                <tr>
-                    <td><h4>Email</h4></td>
-                    <td><a href="mailto:petran@tutanota.com">petran@tutanota.com</a></td>
-                </tr>
-                <tr>
-                        <td><h4>Social Media</h4></td>
-                        <td><a href="#">LinkedIn</a></td>
-                </tr>
-            </tbody>
-        </table>
+            <h4>Email</h4>
+            <a href="mailto:petran@tutanota.com">petran@tutanota.com</a>
+        
+            <h4>Other</h4>
+            <div class="other">
+            <a href="#">LinkedIn</a>
+            <a href="https://github.com/petran123/">GitHub</a>
+            <a href="https://bitbucket.org/%7B9bd4213f-3230-4196-a920-afd3d748e4fc%7D/">Bitbucket</a>
+            </div>
+        </div>
+        
 
     </div>
     <div class="contact-form">
@@ -39,32 +32,30 @@
             <h4>Message Not Sent. Please make sure you have entered your details correctly.</h4>
         </div>
         {% endif %}
-        <h3>Contact Me</h3>
-        <form id="contact" action="/contact.php" method="post" >
-        <table>
-            <tbody>
-                <tr>
-                    <td><label for="name">Name</label></td>
-                    <td><input class="text-input" type="text" name="name" id="name" value="{{ nameField }}"></td>
-                </tr>
-                <tr>
-                    <td><label for="email">Email</label></td>
-                    <td><input class="text-input" type="email" name="email" id="email" value="{{ emailField }}"></td>
-                </tr>
-                <tr>
-                    <td><label for="subject">Subject</label></td>
-                    <td><input class="text-input" type="text" name="subject" id="subject" value="{{ subjectField }}"></td>
-                </tr>
-                <tr>
-                    <td><label for="textform">Message</label></td>
-                    <td><textarea class="text-input" id="textform" name="textform" value="{{ textformField }}"></textarea></td>
-                </tr>
-            </tbody>
-        </table>
+        <h3>Contact Me Directly</h3>
+        <div class="flexbox">
+        <form id="contact-form" action="/contact.php" method="post" >
+        
+                    <label for="name">Name</label>
+                    <input class="text-input" type="text" name="name" id="name" value="{{ nameField }}">
+                
+                
+                    <label for="email">Email</label>
+                    <input class="text-input" type="email" name="email" id="email" value="{{ emailField }}">
+                
+                
+                    <label for="subject">Subject</label>
+                    <input class="text-input" type="text" name="subject" id="subject" value="{{ subjectField }}">
+                
+                
+                    <label for="textform">Message</label>
+                    <textarea class="text-input" id="textform" name="textform">{{ textformField }}</textarea>
+                
+                
         {{ include('recaptcha.html') }}
         </form>
     </div>
-</div>
+    </div>
 
 
 {% endblock %}

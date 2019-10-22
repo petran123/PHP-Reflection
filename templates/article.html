@@ -1,28 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="article-container">
 {% if mode == 'new' %}
-{% if rank == 2 %}
-    {% if failed == true %}
-    <div class="failed">
-        <h4>Entry Failed. Please Make sure you have entered everything correctly</h4>
-    </div>
-    {% endif %}
+
+    {% if rank >= 2 %}
+
+            {% if failed == true %}
+
+            <div class="failed">
+                <h4>Entry Failed. Please Make sure you have entered everything correctly</h4>
+            </div>
+
+            {% endif %}
+    <h1>New Entry</h1>
     <form action="/blog.php" method="post" class="input">
         <label for="title">Title</label>
         <input type="text" name="title" id="title" value="{{ entryTitle }}">
         <label for="content">Content</label>
         <textarea name="content" id="content">{{ entryContent }}</textarea>
-        <input type="submit" value="Send">
+        <input type="submit" class="button" value="Send">
     </form>
+
     {% else %}
+
     <p class="">You are not authorised to make blog entries.</p>
     <a href="/blog.php">Back</a>
+
     {% endif %}
+
 {% else %}
+
     <h2><a href="/blog.php">Back</a></h2>
     <h2>{{ articleContent.title }}</h2>
-    <p class="date">Posted on {{ articleContent.date_posted }}</p>
-    <p>{{ articleContent.content }}</p>
+    <p class="date">Posted on <strong>{{ articleContent.date_posted -}}</strong>.</p>
+    {%- if articleContent.last_updated > 0 %}
+     <p>Last Updated on <strong>{{ articleContent.last_updated -}}</strong>.</p>
+    {%- endif -%}
+    <p>{{ articleContent.content|raw }}</p>
+
+    {% if rank >= 2 and mode != 'edit' %}
+
+        <a href="article.php?id={{ id }}&edit">Edit</a>
+
+    {% endif %}
+
+    {% if rank == 3 and mode != 'edit' %}
+
+        <a href="article.php?id={{ id }}&delete" onclick="return confirm('Are you sure you want to delete this article?');">Delete</a>
+
+    {% endif %}
+
+    {% if mode == 'edit' %}
+
+        {% if rank >= 2 %}
+
+        <h2>Edit mode:</h2>
+        {# I'm thinkinf of using the existing form with additional functionality, but I'll keep them separate for now #}
+        {# ADD AUTOFILL #}
+            <form action="/blog.php?edit&id={{ id }}" method="post" class="input">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="{{ articleContent.title }}">
+            <label for="content">Content</label>
+            <textarea name="content" id="content">{{ articleContent.content }}</textarea>
+            <input type="submit" class="button" value="Send" onclick="return confirm('Are you sure you want to submit this edit?');">
+        </form>
+
+    {% endif %}
+
+    {% endif %}
+
 {% endif %}
+</div>
 {% endblock %}

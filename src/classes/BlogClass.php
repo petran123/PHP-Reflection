@@ -11,7 +11,7 @@ class BlogClass
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-            die($e->getMessage());
+            throw $e;
         }
     }
 
@@ -43,6 +43,34 @@ class BlogClass
             $stmt = $db->prepare($q);
             $stmt->bindParam(":title", $title);
             $stmt->bindParam(":content", $content);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function editEntry($id, $title, $content) 
+    {
+        try {
+            global $db;
+            $q = "UPDATE articles SET title = :title, content = :content WHERE id = :id";
+            $stmt = $db->prepare($q);
+            $stmt->bindParam(":title", $title);
+            $stmt->bindParam(":content", $content);
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function delete($id) {
+        //provide your own security outside of this
+        try {
+            global $db;
+            $q = "DELETE FROM articles WHERE id = :id";
+            $stmt = $db->prepare($q);
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             return $stmt->execute();
         } catch (Exception $e) {
             throw $e;

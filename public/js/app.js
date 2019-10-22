@@ -1,27 +1,27 @@
 const mobileMenu = document.querySelector('#mobile-menu');
 const mobileNav = document.querySelector('.mobile-nav');
-const body = document.querySelector('body');
+const main = document.querySelector('main');
+const overlay = document.querySelector('.menu-overlay');
 let menuOpen = 'closed';
 
-setTimeout(() => mobileNav.style.display = "flex", 1000);
-// fix the body listener
+
 function openNav() {
     mobileNav.style.transform = "translateX(-54px)";
+    overlay.style.display = "block";
+    setTimeout(() => {
+        overlay.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+    }, 100);
     menuOpen = 'open';
-    // setTimeout(() => { 
-    //     body.addEventListener('click', () => {
-    //     closeNav();
-    //     }) 
-    // }, 500); 
+    
 }
 
 function closeNav() {
     mobileNav.style.transform = "translateX(-105vw)";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    setTimeout(() => {
+        overlay.style.display = "none";
+    }, 500);
     menuOpen = 'closed';
-    // body.removeEventListener('click', () => {
-    //     closeNav(), true;
-    // });
-    // mobileMenuFunction();
 }
 
 function mobileMenuFunction() {
@@ -39,6 +39,13 @@ function mobileMenuFunction() {
 
 window.addEventListener("resize", () => {
     closeNav() 
-} );
+});
+
+//switch to main if it doesn't work
+main.addEventListener('click', () => {
+    if (menuOpen == 'open') {
+        closeNav();
+    }
+});
 
 mobileMenuFunction();

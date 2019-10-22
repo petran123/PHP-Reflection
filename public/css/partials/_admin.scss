@@ -1,5 +1,7 @@
-#login-form {
-    max-width: 199px;
+#login-form,
+#contact-form,
+form {
+    width: 95%;
     display: flex;
     flex-flow: column;
     margin-left: auto;
@@ -7,4 +9,11 @@
     a {
         text-align: center;
     }
+    label {
+        line-height: 2;
+    }
+}
+
+.centered {
+    text-align: center;
 }

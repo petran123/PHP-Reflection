@@ -1,0 +1,27 @@
+.new-article-button {
+    text-align: center;
+    padding: 20px;
+}
+
+.article-container {
+    a {
+        padding-top: 10px;
+        padding-right: 20px;
+    }
+}
+
+.page-list {
+    padding-top: 30px;
+    text-align: center;
+    padding-left: 0;
+}
+
+.page,
+.current-page {
+    padding: 5px;
+}
+
+.current-page {
+    border: solid 1px $githubBorder;
+}
+
