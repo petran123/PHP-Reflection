@@ -18,7 +18,7 @@ a {
     color: $linkColor;
     transition: color 0.1s;
     &:hover {
-        color: $linkHover;
+        text-decoration: underline;
     }
     //NOT SURE ABOUT THIS
     width: fit-content;
@@ -28,6 +28,7 @@ nav {
     padding: 1px;
     display: none;
     justify-content: space-evenly;
+    margin-left: auto;
     ul {
         list-style: none;
         max-width: 550px;
@@ -39,6 +40,7 @@ nav {
         display: inline-block;
         padding: 0 2px;
         font-size: .79rem;
+        margin-left: 4px;
         &:hover {
             background-color: $liHover;
         }
@@ -48,7 +50,7 @@ nav {
 .header,
 footer {
     background-color: $headerBG;
-    min-height: 55px;
+    // min-height: 55px;
 }
 
 body {
@@ -60,9 +62,9 @@ body {
 }
 
 footer {
-    margin-top: 5px;
+    
     color: white;
-    margin-top: 20px;
+    // margin-top: 20px;
     // probably the worst idea
     // grid-row-start: 2;
     // grid-row-end: 3;
@@ -92,12 +94,10 @@ footer,
     a {
         color: $unselected;
         padding: 1rem 0px;
-        // &:hover { try this instead of li. see what works best
-        //     background-color: #444;
-        // }
-        // { 
-        // color: #aaa;
-        // }
+        &:hover {
+            color: $unselected;
+            text-decoration: none;
+        }
         &.selected {
             text-shadow: 2px 2px 1px black ;
             color: $selected;

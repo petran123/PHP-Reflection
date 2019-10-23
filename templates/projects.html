@@ -3,21 +3,27 @@
 {% block content %}
 <div class="github-page">
     
-    <a href="{{ projects.0.owner.html_url }}">
-        <div class="github-profile">        
+    
+        <div class="github-profile">   
+        <a href="{{ projects.0.owner.html_url }}">     
             <img src="{{ projects.0.owner.avatar_url }}" alt="Github profile picture">
             <h5>My Github Profile</h5>
+            </a>
         </div>
-    </a>
+    
+    <div class="project-list centered-box">
     <a href="{{ projects.0.owner.repos_url }}" class="projects-title"><h4>My Projects on Github:</h4></a>
-    {% for number in projects %}
-    <a href="{{ number.html_url }}">
+        {% for number in projects %}
         <div class="github-project">
-        <h5>{{ number.name }}</h5>
-        <p> {{ number.description }} </p>
+        <a href="{{ number.html_url }}" class="github-project-a">
+            
+            <h5>{{ number.name }}</h5>
+            <p> {{ number.description }} </p>
+            
+            </a>
         </div>
-    </a>
-{% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
 

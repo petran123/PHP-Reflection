@@ -2,8 +2,8 @@
 
 class BlogClass
 {
-    public function FetchAllPosts() 
-    {        
+    public function fetchAllPosts()
+    {
         try {
             global $db;
             $q = "SELECT * FROM articles ORDER BY date_posted DESC";
@@ -49,8 +49,9 @@ class BlogClass
         }
     }
 
-    public function editEntry($id, $title, $content) 
+    public function editEntry($id, $title, $content)
     {
+        // I'm using a javascript alert to confirm before calling this
         try {
             global $db;
             $q = "UPDATE articles SET title = :title, content = :content WHERE id = :id";
@@ -64,8 +65,9 @@ class BlogClass
         }
     }
 
-    public function delete($id) {
-        //provide your own security outside of this
+    public function delete($id)
+    {
+        // I'm using a javascript alert to confirm before calling this
         try {
             global $db;
             $q = "DELETE FROM articles WHERE id = :id";

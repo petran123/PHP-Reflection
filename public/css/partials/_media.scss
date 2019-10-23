@@ -1,2 +1,76 @@
 //This should remain empty until i'm 100% finished with mobile /
 
+
+@media screen and (min-width: 768px) {
+    #mobile-menu {
+        display: none;
+    }
+    nav {
+        display: block;
+        margin-left: auto;
+    }
+    .admin-links {
+        a {
+            display: inline-block;
+            margin-left: 20px;
+        }
+    }
+    .project-list {
+        display: grid;
+        grid-column-gap: 5px;
+        grid-row-gap: 5px;
+        grid-template-columns: 1fr 1fr;
+        max-width: 472px;
+    }
+    .projects-title {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .github-project {
+        margin-bottom: 0;
+    }
+    .contact {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-evenly;
+        max-width: 550px;
+    }
+    .article-container {
+        padding-top: 50px;
+    }
+    .input {
+        margin-top: 100px;
+    }
+    #login-form, 
+    #contact-form, 
+    form {
+        max-width: 600px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .wrapper {
+        //not sure
+        max-width: 77%;
+        .index-container {
+            // plot twist
+            display: grid;
+            grid-template-columns: 61% 30%;
+        }
+        .personal-info {
+            grid-row-start: 1;
+        }
+        .personal-info,
+        .flex-p {
+            grid-column-start: 2;
+        }
+        .blog-container {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        }
+        .flex-p {
+            grid-row-start: 2;
+        }
+    }
+}

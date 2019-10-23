@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if rank >= 2 %}
-<div class="user-list">
+<div class="user-list centered-box">
     {% if altered == 'success' %}
         <div class="success">
             <h4>Rank Changed Successfuly</h4>
@@ -51,21 +51,23 @@
 <p>You have successfully created your account, but You are not an admin, and cannot see this content.</p>
 {% else %}
 <div class="flexbox">
-    <form id="login-form" action='/admin.php' method='post'>
+    <div class="login-wrapper">
         <h1>Please log in</h1>
-        {% if rank == "wrong" %}
-        <div class="failed">
-            <h4> Wrong Credentials </h4>
-        </div>
-    {% endif %}
-    <label for='username'>Username</label>
-    <input type='text' id='username' name='username'>
-    <label for='password'>Password</label>
-    <input type='password' id='password' name='password'>
+        <form id="login-form" action='/admin.php' method='post'>
+            {% if rank == "wrong" %}
+            <div class="failed">
+                <h4> Wrong Credentials </h4>
+            </div>
+            {% endif %}
+        <label for='username'>Username</label>
+        <input type='text' id='username' name='username'>
+        <label for='password'>Password</label>
+        <input type='password' id='password' name='password'>
 
-        <input class="button" type='submit' value='Log In!'>
-        <a href='/register.php'>Register</a>
-    </form>
+            <input class="button" type='submit' value='Log In!'>
+            <a href='/register.php'>Register</a>
+        </form>
+    </div>
 </div>
 {% endif %}
 

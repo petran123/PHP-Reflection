@@ -1,6 +1,6 @@
 <?php
 
-function request() 
+function request()
 {
     return \Symfony\Component\HttpFoundation\Request::createFromGlobals();
-} 
+}

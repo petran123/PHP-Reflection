@@ -1,3 +1,4 @@
+{% for num in articleList|slice(articlePages.currentPage * articlePages.postsPerPage - articlePages.postsPerPage, articlePages.postsPerPage) %}
 <div class="article-container">
     <h3><a href="article.php?id={{ num.id }}">{{ num.title }}</a></h3>
     <p class="date">Posted on <strong>{{ num.date_posted }}</strong>.</p>
@@ -15,3 +16,4 @@
     <a href="article.php?id={{ num.id }}&delete" onclick="return confirm('Are you sure you want to delete this article?');">Delete</a>
     {% endif %}
 </div>
+{% endfor %}

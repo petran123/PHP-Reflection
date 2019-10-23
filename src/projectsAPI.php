@@ -8,5 +8,5 @@ $api->setToken($token);
 $response =  $api->get($url);
 $projectList = $api->decode($response);
 
-//this adds the api results into twig's arguments
+
 $args['projects'] =  $projectList;

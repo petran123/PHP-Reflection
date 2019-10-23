@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="article-container">
+<div class="article-container centered-box">
 {% if mode == 'new' %}
 
     {% if rank >= 2 %}
@@ -30,7 +30,7 @@
 
 {% else %}
 
-    <h2><a href="/blog.php">Back</a></h2>
+    <h2 class="back-button"><a href="/blog.php">Back</a></h2>
     <h2>{{ articleContent.title }}</h2>
     <p class="date">Posted on <strong>{{ articleContent.date_posted -}}</strong>.</p>
     {%- if articleContent.last_updated > 0 %}

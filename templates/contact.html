@@ -1,21 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="wrapper flex-container">
-    
+<div class="wrapper">
+        <h3 class="centered">Contact Details</h3>
     <div class="contact">
-        <h3>Contact Details</h3>
+            
+        <div class="contact-box">
+        
             <h4>Mobile</h4>
             <a href="tel:07845228330">07845228330</a>
-
+        </div>
+            <div class="contact-box">
             <h4>Email</h4>
             <a href="mailto:petran@tutanota.com">petran@tutanota.com</a>
-        
+        </div>
+            <div class="contact-box">
             <h4>Other</h4>
             <div class="other">
-            <a href="#">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/petros-papadopoulos-70049918b/">LinkedIn</a>
             <a href="https://github.com/petran123/">GitHub</a>
             <a href="https://bitbucket.org/%7B9bd4213f-3230-4196-a920-afd3d748e4fc%7D/">Bitbucket</a>
+        </div>
             </div>
         </div>
         
@@ -32,10 +37,11 @@
             <h4>Message Not Sent. Please make sure you have entered your details correctly.</h4>
         </div>
         {% endif %}
-        <h3>Contact Me Directly</h3>
-        <div class="flexbox">
-        <form id="contact-form" action="/contact.php" method="post" >
         
+        <div class="flexbox">
+                
+        <form id="contact-form" action="/contact.php" method="post" >
+            <h3>Contact Me Directly</h3>
                     <label for="name">Name</label>
                     <input class="text-input" type="text" name="name" id="name" value="{{ nameField }}">
                 

@@ -7,7 +7,7 @@ if (isset($_GET['failed'])) {
     $args['mode'] = 'new';
     $args['entryTitle'] = $_SESSION['entryTitle'];
     $args['entryContent'] = $_SESSION['entryContent'];
-} 
+}
 
 if (isset($_GET['new'])) {
     $args['mode'] = 'new';
@@ -15,17 +15,19 @@ if (isset($_GET['new'])) {
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
     $args['articleContent'] = $blog->fetchPostById($id);
 
+    // I'm not sure if placing this inside the method above would be the best idea
+    $args['articleContent']['title'] = htmlspecialchars_decode($args['articleContent']['title'], ENT_QUOTES);
+    $args['articleContent']['title'] = strip_tags($args['articleContent']['title']);
+    $args['articleContent']['content'] = strip_tags($args['articleContent']['content'], '<p>');
+
     $args['id'] = $id;
     if ($blog->fetchPostById($id) == false) {
         header('location: /blog.php?notFound');
     }
 
-    $args['articleContent']['title'] = htmlspecialchars_decode($args['articleContent']['title'], ENT_QUOTES);
-    $args['articleContent']['title'] = strip_tags($args['articleContent']['title']);
-    $args['articleContent']['content'] = strip_tags($args['articleContent']['content'], '<p>');
 
     if (isset($_GET['edit'])) {
-        $args['mode'] = 'edit';        
+        $args['mode'] = 'edit';
     } elseif (isset($_GET['delete'])) {
         if ($acc->getRank() == 3) {
             if ($blog->delete($id)) {
@@ -33,7 +35,6 @@ if (isset($_GET['new'])) {
             } else {
                 header('location: /blog.php?failed');
             }
-
         } else {
             header('location: /blog.php?notFound');
         }

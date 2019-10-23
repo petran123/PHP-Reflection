@@ -8,19 +8,22 @@
     <h4>{{ regErr }}</h4>
     </div>
     {% endif %}
-    <div class="reg-table">
-        <table>
-        <tr><td><label for="regUsername">Username</label></td></tr>
-        <tr><td><input class="text-input" type="text" id="regUsername" name="regUsername"></td></tr>
-        
-        <tr><td><label for="regPassword">Password</label></td></tr>
-        <tr><td><input class="text-input" type="Password" id="regPassword" name="regPassword"></td></tr>
-        <tr><td><label for="regRepeat">Repeat Password</label></td></tr>
-        <tr><td><input class="text-input" type="password" id="regRepeat" name="regRepeat"></td></tr>
-        </table>
-        <div class="inline-button">
-        {{ include('recaptcha.html') }}
-        <a href="/admin.php">Already have an account?</a>
+    <div class="login-wrapper">
+        <div class="reg-table">
+            
+            <label for="regUsername">Username</label>
+            <input class="text-input" type="text" id="regUsername" name="regUsername">
+            
+            <label for="regPassword">Password</label>
+            <input class="text-input" type="Password" id="regPassword" name="regPassword">
+
+            <label for="regRepeat">Repeat Password</label>
+            <input class="text-input" type="password" id="regRepeat" name="regRepeat">
+            
+            <div class="inline-button">
+            {{ include('recaptcha.html') }}
+            <a href="/admin.php">Already have an account?</a>
+            </div>
         </div>
     </div>
 </form>

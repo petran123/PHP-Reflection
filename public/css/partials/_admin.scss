@@ -6,6 +6,7 @@ form {
     flex-flow: column;
     margin-left: auto;
     margin-right: auto;
+    max-width: 280px;
     a {
         text-align: center;
     }
@@ -16,4 +17,17 @@ form {
 
 .centered {
     text-align: center;
+}
+
+.login-wrapper {
+    width: 85%;
+    max-width: 280px;
+    margin: auto;
+    a {
+        align-self: center;
+    }
+}
+
+.user-list {
+    width: fit-content;
 }

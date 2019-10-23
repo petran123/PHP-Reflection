@@ -8,5 +8,9 @@
         "phpmailer/phpmailer": "^6.1",
         "league/oauth2-google": "^3.0",
         "ezyang/htmlpurifier": "^4.11"
+    },
+
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*"
     }
 }

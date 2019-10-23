@@ -24,8 +24,14 @@
             <h2><a href="admin.php" class="{{ l6 }}"> {{ username }}</a></h2>
             <h2><a href="{{ refresh }}?logout">Log out</a></h2>
         {% else %}
-            <h2><a href="admin.php" class="{{ l6 }}">Admin</a></h2>
+            <h2><a href="admin.php" class="{{ l6 }}">Login</a></h2>
+            <h2><a href='/register.php' class="{{ l7 }}">Register</a></h2>
         {% endif %}
+        </div>
+    </div>
+    <div class="cookies-container">
+        <div class="cookies-notice">
+            <p>This website uses Cookies</p><button id="cookies-button">OK</button>
         </div>
     </div>
     <header>
@@ -59,12 +65,17 @@
     <footer>
         <div class="wrapper footer-container">
         <p>&copy; 2019 Petros Papadopoulos</p>
-        {% if rank >= 1 %}
+        
+        <div class="admin-links">
+            {% if rank >= 1 %}
             <a href="admin.php" class="admin {{ l6 }}"> {{ username }}</a>
             <a href="{{ refresh }}?logout" class="admin">Log out</a>
-        {% else %}
-        <a href="admin.php" class="admin {{ l6 }}">Admin</a>
+            {% else %}
+        <a href="admin.php" class="admin {{ l6 }}">Login</a>
+        <a href='/register.php' class="admin {{ l7 }}">Register</a>
         {% endif %}
+        </div>
+        
         </div>
     </footer>
     <script src="https://kit.fontawesome.com/e77a179e1a.js" crossorigin="anonymous"></script>

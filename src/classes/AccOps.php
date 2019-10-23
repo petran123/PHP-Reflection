@@ -2,7 +2,10 @@
 
 class AccOps
 {
+    
     private $userId = 0;
+    //rank of 1 for normal users, 2 for promoted users (can post and edit articles),
+    //and 3 for the admin (can promote/demote and delete articles)
     private $rank = 0;
 
 
@@ -20,10 +23,10 @@ class AccOps
             $password = filter_input(INPUT_POST, 'regPassword', FILTER_SANITIZE_STRING);
             $repeat = filter_input(INPUT_POST, 'regRepeat', FILTER_SANITIZE_STRING);
 
-            // i know that these two are too short to be secure but this is just a proof of concept.
+            
 
             //if captcha is wrong, return error
-            //this code is a copypaste. replace it with an object
+            //I'd like to place this in its own method at some point
             $postData = ['secret' => getenv("RECAPTCHA_SECRET_KEY"), 'response' => $_POST['g-recaptcha-response']];
             $recaptcha = http_build_query($postData);
             $ch = curl_init();
@@ -33,9 +36,9 @@ class AccOps
           
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           
-            $server_output = curl_exec ($ch);
+            $server_output = curl_exec($ch);
           
-            curl_close ($ch);
+            curl_close($ch);
         
             $decoded = json_decode($server_output);
 
@@ -51,6 +54,7 @@ class AccOps
                 return false;
             }
 
+            // i know that the password can be too short to be secure.
             if (strlen($password) < 4) {
                 header('location: register.php?error=pwdlen');
                 return false;
@@ -62,15 +66,14 @@ class AccOps
             $check->bindParam(":name", $name);
             $check->execute();
             $results = $check->fetch(PDO::FETCH_ASSOC);
-            // if name is unavailable, returns false.
-            
+
+            // if name is unavailable, method ends and returns false.
             if ($results['username']) {
                 header('location: register.php?error=usntaken');
                 return false;
             }
             
-            
-            if (!($password === $repeat)) {
+            if (($password !== $repeat)) {
                 header('location: register.php?error=rep');
                 return false;
             }
@@ -83,7 +86,6 @@ class AccOps
             
             //you don't need to pass any details because the post is still available until you redirect.
             $this->logIn('/admin.php');
-            // $this->createCookie('/admin.php');
         } catch (Exception $e) {
             throw $e;
         }
@@ -91,8 +93,7 @@ class AccOps
 
     public function login($location)
     {
-        //i think the reason why account creation doesn't auto login anymore is because i changed the post names for account creation.
-        //i'm sure there's a better way to write this
+        //there should be a better way to write this
         if (!empty(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING))) {
             $name = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
         } else {
@@ -104,8 +105,6 @@ class AccOps
         } else {
             $password = filter_input(INPUT_POST, 'regPassword', FILTER_SANITIZE_STRING);
         }
-        
-
 
         try {
             global $db;
@@ -121,17 +120,18 @@ class AccOps
             $results = [ 'id' => 'wrong',
                     'rank' => 'wrong'];
         }
-        //do not hardcode the path. use a variable
+        
         $this->userId = $results['id'];
         
         $this->rank = $results['rank'];
         if ($location != null) {
             $this->createCookie($location);
-            
-            // self::createSession($results, $location);
         }
         return true;
     }
+
+    
+    // Not sure if sessions are secure enough so i haven't implemented them here.
 
     // private function createSession($results, $location)
     // {
@@ -140,7 +140,7 @@ class AccOps
     //     header("location: $location");
     // }
 
-    public function logout($location = null) 
+    public function logout($location = null)
     {
         // $_SESSION['username'] = null;
         // $_SESSION['rank'] = null;
@@ -152,7 +152,7 @@ class AccOps
 
     public function createCookie($location = null)
     {
-                //add jwt here?
+
                 $expTime = time() + 3600;
                 $jwt = \Firebase\JWT\JWT::encode([
                     'iss' => \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(),
@@ -163,12 +163,12 @@ class AccOps
                         'rank' => $this->rank,
                         'userId' => $this->userId
                     ]
-                ], getenv("SECRET_KEY"),'HS256');
+                ], getenv("SECRET_KEY"), 'HS256');
             
-                setcookie('access_token', $jwt, time() + 3600, "/", \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(), false, true);
-                if (!empty($location)) {
-                    header("location: $location");
-                }
+                setcookie('access_token', $jwt, $expTime, "/", \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(), false, true);
+        if (!empty($location)) {
+            header("location: $location");
+        }
     }
 
     public function getUsername()
@@ -208,8 +208,11 @@ class AccOps
         }
     }
 
-    public function promote($id) 
+    public function promote($id)
     {
+        if ($this->getRank() < 3) {
+            return false;
+        }
         try {
             global $db;
             $q = "UPDATE accounts SET rank = 2 WHERE id = :id";
@@ -219,11 +222,17 @@ class AccOps
         } catch (Exception $e) {
             throw $e;
         }
-        
     }
 
-    public function demote($id) 
+    public function demote($id)
     {
+        /*
+        * Demotes the user specified
+        */
+
+        if ($this->getRank() < 3) {
+            return false;
+        }
         try {
             global $db;
             $q = "UPDATE accounts SET rank = 1 WHERE id = :id";
