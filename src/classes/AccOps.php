@@ -163,7 +163,7 @@ class AccOps
                         'rank' => $this->rank,
                         'userId' => $this->userId
                     ]
-                ], getenv("SECRET_KEY"), 'HS256');
+                ], getenv("COOKIES_SECRET_KEY"), 'HS256');
             
                 setcookie('access_token', $jwt, $expTime, "/", \Symfony\Component\HttpFoundation\Request::createFromGlobals()->getHost(), false, true);
         if (!empty($location)) {
