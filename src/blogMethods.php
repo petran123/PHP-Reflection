@@ -2,7 +2,7 @@
 
 $postsPerPage = 4;
 
-$blog = new BlogClass;
+$blog = new Blog($database);
 $args['articleList'] = $blog->FetchAllPosts();
 
 
@@ -38,16 +38,16 @@ if (isset($_GET['failed'])) {
 $args['articlePages'] = ['currentPage' => $page, 'totalPages' => $totalPages, 'postsPerPage' => $postsPerPage];
 
 if (!empty($_POST)) {
-    if ($acc->getRank() < 2) {
+    if ($user->getRank() < 2) {
         header('location: /article.php?failed');
     }
-    
+
     $config = HTMLPurifier_Config::createDefault();
     $purifier = new HTMLPurifier($config);
     $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
     $dirty_content = $_POST['content'];
     $clean_content = $purifier->purify($dirty_content);
-    
+
     if (isset($_GET['edit'])) {
         if (!empty($_GET['id'])) {
             $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);

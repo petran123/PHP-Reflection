@@ -1,6 +1,6 @@
 <?php
 
-$blog = new BlogClass;
+$blog = new Blog($database);
 
 if (isset($_GET['failed'])) {
     $args['failed'] = true;
@@ -29,8 +29,8 @@ if (isset($_GET['new'])) {
     if (isset($_GET['edit'])) {
         $args['mode'] = 'edit';
     } elseif (isset($_GET['delete'])) {
-        if ($acc->getRank() == 3) {
-            if ($blog->delete($id)) {
+        if ($user->getRank() == 3) {
+            if ($blog->deleteEntry($id)) {
                 header('location: /blog.php?success');
             } else {
                 header('location: /blog.php?failed');

@@ -1,8 +1,8 @@
 <?php
 
 if (!empty($_POST)) {
-    $acc = new AccOps();
-    $acc->createAccount();
+    $user = new Auth($database);
+    $user->createAccount();
     // headers and errors are handled by the method
 }
 

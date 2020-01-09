@@ -2,13 +2,12 @@
 
 if (!empty($_POST)) {
     if (isset($_POST['username'])) {
-        $acc = new AccOps();
-        $acc->login('/admin.php');
+        $user = Auth::login($database);
     }
 
     if (isset($_POST['promote'])) {
         $alteredId = filter_input(INPUT_POST, 'promote', FILTER_SANITIZE_STRING);
-        if ($acc->promote($alteredId)) {
+        if ($auth->promote($alteredId)) {
             header('location:/admin.php?success');
         } else {
             header('location:/admin.php?failed');
@@ -17,7 +16,7 @@ if (!empty($_POST)) {
 
     if (isset($_POST['demote'])) {
         $alteredId = filter_input(INPUT_POST, 'demote', FILTER_SANITIZE_STRING);
-        if ($acc->demote($alteredId)) {
+        if ($auth->demote($alteredId)) {
             header('location:/admin.php?success');
         } else {
             header('location:/admin.php?failed');
@@ -25,8 +24,8 @@ if (!empty($_POST)) {
     }
 }
 
-if ($acc->getRank() >= 2) {
-    $args['userList'] = $acc->getUsers();
+if ($user->getRank() >= 2) {
+    $args['userList'] = $auth->getUsers();
 }
 
 if (isset($_GET['success'])) {
