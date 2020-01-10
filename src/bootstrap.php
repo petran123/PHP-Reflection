@@ -15,8 +15,8 @@ startSession();
 
 $refresh = strtok($_SERVER['REQUEST_URI'], '?');
 $database = new Database();
-$user = authenticate($database);
-$auth = new Auth($database, $user);
+$auth = new Auth($database);
+$user = authenticateFromCookie($auth);
 
 
 if (isset($_GET['logout'])) {

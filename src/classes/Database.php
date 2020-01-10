@@ -54,13 +54,16 @@ class Database
         return $this->execute($q, null, $id);
     }
 
-    public function login($username)
+    public function getUserByName($username)
     {
         $q = "SELECT * FROM accounts WHERE username = :name";
 
-        $result = $this->get($q, ['name' => $username], null, true);
+        $result = $this->get($q, ['name' => $username]);
 
-        return $result;
+        if (!empty($result))
+            return $result[0];
+
+        return false;
     }
 
     public function getUsers()
@@ -81,6 +84,27 @@ class Database
         return $this->execute($q, null, $id);
     }
 
+    public function authenticateUserFromCookie($data)
+    {
+        $q = "SELECT * FROM accounts WHERE id = :id";
+        $result = $this->get($q, null, $data->userId);
+
+        return (
+            ($result['id'] == $data->userId) &&
+            ($result['username'] == $data->username) &&
+            ($result['rank'] == $data->rank));
+    }
+
+    public function createUser($username, $hashedPassword, $rank)
+    {
+        $q = "INSERT INTO accounts (username, password, rank) VALUES (:username, :password, :rank)";
+        return $this->execute($q, [
+            'username' => $username,
+            'password' => $hashedPassword,
+            'rank' => $rank
+        ]);
+    }
+
     private function execute($q, $args = null, $id = null)
     {
         try {
@@ -99,7 +123,7 @@ class Database
         }
     }
 
-    private function get(string $q, $args = null, $id = null, $isLogin = false)
+    private function get(string $q, $args = null, $id = null)
     {
         try {
             $stmt = $this->db->prepare($q);
@@ -114,9 +138,6 @@ class Database
             }
 
             $stmt->execute();
-
-            if ($isLogin)
-                return $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {

@@ -9,7 +9,7 @@ class User
     private $rank;
     
 
-    public function __construct(int $userId, string $username, int $rank)
+    public function __construct(int $userId = -1, string $username = 'Guest', int $rank = -1)
     {
         $this->userId = $userId;
         $this->username = $username;
@@ -24,6 +24,11 @@ class User
     public function getRank()
     {
         return $this->rank;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
     }
 
 }

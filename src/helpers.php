@@ -21,22 +21,21 @@ function startSession()
     session_start();
 }
 
-function authenticate($database)
+function authenticateFromCookie($auth)
 {
+
     if (request()->cookies->has('access_token')) {
         try {
             $loginCookie = \Firebase\JWT\JWT::decode($_COOKIE["access_token"], getenv('COOKIES_SECRET_KEY'), array('HS256'));
-            $details = $loginCookie->data;
-            return new User($details->userId, $details->username, $details->rank);
+            
+            return $auth->authenticateFromCookie($loginCookie->data);
+            
         } catch (Exception $e) {
             //currently it simply refreshes the page if 15 minutes has passed. I could fix this in other ways but i'm okay with that for an admin panel.
-            throw $e;
-
-            // TODO is this ever called?
-            die('header refresh 0 is being called');
             header("Refresh:0");
+            die('cookie failed');
         }
     }
 
-    return Auth::login($database);
+    return $auth->getUser();
 }
