@@ -128,7 +128,7 @@ class Database
         try {
             $stmt = $this->db->prepare($q);
 
-            foreach ((array) $args as $key => $value)
+            foreach ((array) $args as $key => &$value)
                 $stmt->bindParam(":" . $key, $value);
 
             if (isset($id)) {
